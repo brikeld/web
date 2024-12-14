@@ -135,20 +135,9 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: visible;
 }
 
-
-
-
-
-
-.hidden-svg .hidden-path {
-    display: none;
-}
-
-.hidden-svg text {
-    visibility: visible;
-}
 
 /* ----------------------------------------------------------- */
 /* ------------------------ Tableau 4 ------------------------ */
@@ -162,4 +151,16 @@ body {
     align-items: center;
     position: relative;
 }
+
+.p4_rectangle {
+    width: 20vw;
+    height: 20vh;
+    background-color: #cd0000;
+    position: absolute;
+    top: 30vh;
+    left: 20vw;
+    transform: translate(-50%, -50%);
+}
+
+
 

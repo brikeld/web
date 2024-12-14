@@ -8,14 +8,14 @@ document.addEventListener("DOMContentLoaded", function() {
         const textPath3 = svgDoc.getElementById("labyrinth-text-3");
 
         gsap.to(textPath, {
-            duration: 100, // Increase the duration to decrease the speed
+            duration: 500, // Increase the duration to decrease the speed
             attr: { startOffset: "100%" },
             repeat: -1,
             ease: "linear"
         });
 
         gsap.to(textPathReverse, {
-            duration: 200, // Increase the duration to decrease the speed
+            duration: 500, // Increase the duration to decrease the speed
             attr: { startOffset: "0%" },
             repeat: -1,
             ease: "linear"
@@ -23,14 +23,14 @@ document.addEventListener("DOMContentLoaded", function() {
 
         gsap.to(textPath2, {
             duration: 500, // Increase the duration to decrease the speed
-            attr: { startOffset: "100%" },
+            attr: { startOffset: "50%" },
             repeat: -1,
             ease: "linear"
         });
 
         gsap.to(textPath3, {
             duration: 500, // Increase the duration to decrease the speed
-            attr: { startOffset: "0%" },
+            attr: { startOffset: "50%" },
             repeat: -1,
             ease: "linear"
         });
