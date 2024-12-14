@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 593.5 593.3">
+    <defs>
+        <style>
+            @font-face {
+                font-family: 'HALTimezone';
+                src: url('../../fonts/HALTimezoneTest-MonoRegular.otf') format('opentype');
+            }
+            .cls-1{fill:none;stroke:transparent;stroke-miterlimit:10;}
+            text {font-size: 34px; font-family: 'HALTimezone', monospace;}
+        </style>
+        <path id="square-path-1" d="M6,5.9 h581.5 v581.5 h-581.5 z" />
+    </defs>
+    <rect class="cls-1" x="6" y="5.9" width="581.5" height="581.5"/>
+    <g id="moving-text-1">
+        <text>
+            <textPath href="#square-path-1" id="text-path-1" startOffset="0%">
+               "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium erspiciatis unde omnis iste natus error sit voluptatem unde omnis iste natus error sit voluptatem" 
+            </textPath>
+        </text>
+    </g>
+</svg>

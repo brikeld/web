@@ -1,0 +1,193 @@
+.snap-container {
+    scroll-snap-type: y proximity;
+    overflow-y: scroll;
+    height: 100vh;
+}
+
+.page {
+    scroll-snap-align: start;
+    height: 100vh;
+    width: 100vw;
+}
+
+@font-face {
+    font-family: 'HALTimezone';
+    src: url('fonts/HALTimezoneTest-MonoRegular.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'HALTimezoneTest-MonoRegular';
+    src: url('fonts/HALTimezoneTest-MonoRegular.otf') format('otf');
+}
+
+body {
+    font-family: 'HALTimezoneTest-MonoRegular', monospace;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    background: #fff;
+}
+
+/* ----------------------------------------------------------- */
+/* ------------------------ Tableau 1 ------------------------ */
+/* ----------------------------------------------------------- */
+
+
+/* ------------------ Position ------------------ */
+/* ---------------------------------------------- */
+
+#page1 {
+    /* overflow: hidden; */
+    background-color: rgb(142, 145, 22);
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background-image: url("../svg/01_Pink.svg");
+}
+
+.p1_rectangle {
+    width: 30vw; /* Rectangle width */
+    height: 100vh; /* Rectangle height */
+    background-color: rgb(255, 0, 179); /* Rectangle color */
+    mix-blend-mode: multiply; /* Fusion/blend mode */
+    display: flex; /* Enable Flexbox for centering */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    position: relative; /* Keeps position rules */
+}
+
+.p1_icon {
+    width: 85%; /* Adjust size */
+    height: auto;
+}
+
+.p1_center-rectangle {
+    position: absolute;
+    height: 75vh;
+    width: 25vw;
+    
+}
+
+.p1_left-rectangle {
+    position: absolute;
+    left: 1.5%; /* Distance from the left edge */
+}
+
+.p1_right-rectangle {
+    position: absolute;
+    right: 1.5%; /* Distance from the left edge */
+    
+}
+
+.p1_left-rectangle img {
+    width: 90%;
+    height: auto;
+}
+.p1_right-rectangle img {
+    width: 80%;
+    height: auto;
+}
+.p1_center-rectangle img {
+    width: 80%;
+    /* height: 50vh; */
+    height: auto;
+}
+
+.initial-text-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    text-align: center;
+}
+
+.moving-text {
+    font-family: 'HALTimezone', monospace;
+    font-size: 34px;
+    margin: 20px 0;
+    opacity: 1;
+}
+
+/* ----------------------------------------------------------- */
+/* ------------------------ Tableau 2 ------------------------ */
+/* ----------------------------------------------------------- */
+
+
+#page2 {
+    background-color: #a4a4a4;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.squares-container {
+    position: absolute;
+    width: 60vw;
+    height: 60vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0; /* Hide shapes initially */
+    transition: opacity 1s ease-in-out; /* Smooth reveal */
+}
+
+.square-svg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+#square-01 { z-index: 1; }
+#square-02 { z-index: 2; }
+#square-03 { z-index: 3; }
+
+/* ----------------------------------------------------------- */
+/* ------------------------ Tableau 3 ------------------------ */
+/* ----------------------------------------------------------- */
+#page3 {
+    background-color: #bababa;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.p3_labyrinth {
+    width: 50vw;
+    height: 50vh;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: visible;
+}
+
+
+/* ----------------------------------------------------------- */
+/* ------------------------ Tableau 4 ------------------------ */
+/* ----------------------------------------------------------- */
+#page4 {
+    background-color: #555555;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+
+
+
