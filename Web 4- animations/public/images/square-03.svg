@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 593.5 593.3">
+    <defs>
+        <style>
+            @font-face {
+                font-family: 'HALTimezone';
+                src: url('../../fonts/HALTimezoneTest-MonoRegular.otf') format('opentype');
+            }
+            .cls-1{fill:none;stroke:transparent;stroke-miterlimit:10;}
+            text {font-size: 34px; font-family: 'HALTimezone', monospace;}
+        </style>
+        <path id="square-path-3" d="M159.25,159.15 h275 v275 h-275 z" />
+    </defs>
+    <rect class="cls-1" x="159.25" y="159.15" width="275" height="275"/>
+    <g id="moving-text-3">
+        <text>
+            <textPath href="#square-path-3" id="text-path-3" startOffset="0%">
+               "On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will frequently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore always holds in these matters 
+            </textPath>
+        </text>
+    </g>
+</svg>
