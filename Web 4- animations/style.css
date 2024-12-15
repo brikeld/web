@@ -178,7 +178,7 @@ body {
 }
 
 #p3_text1 {
-    font-size: 7em;
+    font-size: calc(1.8vw + 2.5rem);
     position: absolute;
     bottom: -2.3em;
     left: 35%;             /* Adjust left position */
@@ -188,7 +188,7 @@ body {
 }
 
 #p3_text2 {
-    font-size: 7em;
+   font-size: calc(1.8vw + 2.5rem);
     position: absolute;
     bottom: 4em;
     left: 35%;
@@ -197,10 +197,11 @@ body {
 }
 
 #p3_text3 {
-    font-size: calc(1.8vw + 0.5rem);
+    font-size: calc(1.5vw + 0.5rem);
     position: absolute;
-    left: -10%;          
-    top: 2%;           
+    left: -10%;    
+    bottom: 0%;      
+    top: 2%;   
     width: auto;       
     transform: rotate(-90deg);
     transform-origin: top left;
@@ -216,7 +217,7 @@ body {
 }
 
 #p3_text4 {
-    font-size: calc(1.8vw + 0.5rem);
+    font-size: calc(1.5vw + 0.5rem);
     position: absolute;
     left: 98%;        
     top: 2%;           
@@ -262,12 +263,13 @@ body {
 }
 
 #p3_text8 {
-    font-size: calc(5vw + 1rem);
+    font-size: calc(1.8vw + 2.5rem);
     position: absolute;
     left: 4vw;        
     bottom: -1vh;      
     text-align: left;   
     word-spacing: calc(0.05vw + 0.02rem);    
+    white-space: pre-wrap;
 }
 
 #p3_I {
