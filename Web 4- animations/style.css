@@ -52,7 +52,7 @@ body {
 }
 
 .p1_rectangle {
-    width: 30vw; /* Rectangle width */
+    width: 25vw; /* Rectangle width */
     height: 100vh; /* Rectangle height */
     background-color: rgb(255, 0, 179); /* Rectangle color */
     mix-blend-mode: multiply; /* Fusion/blend mode */
@@ -69,19 +69,19 @@ body {
 
 .p1_center-rectangle {
     position: absolute;
-    height: 75vh;
-    width: 25vw;
+    height: 70vh;
+    width: 22vw;
     
 }
 
 .p1_left-rectangle {
     position: absolute;
-    left: 1.5%; /* Distance from the left edge */
+    left: 2%; /* Distance from the left edge */
 }
 
 .p1_right-rectangle {
     position: absolute;
-    right: 1.5%; /* Distance from the left edge */
+    right: 2%; /* Distance from the left edge */
     
 }
 
@@ -345,6 +345,46 @@ body {
     
     #p3_text5, #p3_text6, #p3_text7, #p3_text8 {
         font-size: calc(4vw + 1rem);
+    }
+}
+
+/* MacBook specific adjustments */
+@media screen and (min-width: 1512px) and (max-width: 1513px) and (min-height: 982px) and (max-height: 983px) {
+    .p1_rectangle {
+        width: 22vw;
+    }
+
+    .p1_center-rectangle {
+        width: 20vw;
+    }
+
+    #p3_text1, #p3_text2 {
+        font-size: 5em;
+    }
+
+    #p3_text3, #p3_text4 {
+        font-size: calc(1.4vw + 0.4rem);
+    }
+
+    #p3_text5, #p3_text6, #p3_text7, #p3_text8 {
+        font-size: calc(4vw + 0.8rem);
+    }
+
+    .squares-container {
+        width: 50vw;
+        height: 50vh;
+    }
+
+    #p3_I {
+        width: calc(8vw + 1.5rem);
+    }
+
+    #p3_I2 {
+        width: calc(12vw + 1.5rem);
+    }
+
+    #p3_I3 {
+        width: calc(7vw + 1.5rem);
     }
 }
 
