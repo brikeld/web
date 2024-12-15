@@ -388,6 +388,77 @@ body {
     }
 }
 
+/* MacBook Pro 14" (3024x1964) specific adjustments */
+@media screen and (min-width: 3024px) and (min-height: 1964px) {
+    /* Text positioning and sizing adjustments */
+    #p3_text1 {
+        font-size: 5em;
+        bottom: -1.8em;
+        left: 38%;
+    }
+
+    #p3_text2 {
+        font-size: 5em;
+        bottom: 5em;
+        left: 38%;
+    }
+
+    #p3_text3 {
+        font-size: calc(1.2vw + 0.3rem);
+        left: -5%;
+        top: 5%;
+    }
+
+    #p3_text4 {
+        font-size: calc(1.2vw + 0.3rem);
+        left: 95%;
+        top: 5%;
+    }
+
+    #p3_text5 {
+        font-size: calc(3vw + 0.8rem);
+        left: -2.5vw;
+        bottom: 72vh;
+    }
+
+    #p3_text6 {
+        font-size: calc(3vw + 0.8rem);
+        left: 8.5vw;
+        bottom: 72vh;
+    }
+
+    #p3_text7 {
+        font-size: calc(3vw + 0.8rem);
+        left: 7vw;
+        bottom: -12vh;
+    }
+
+    #p3_text8 {
+        font-size: calc(3vw + 0.8rem);
+        left: 3vw;
+        bottom: 2vh;
+    }
+
+    /* SVG adjustments */
+    #p3_I {
+        left: 6vw;
+        top: 35vh;
+        width: calc(6vw + 1.5rem);
+    }
+
+    #p3_I2 {
+        left: 42vw;
+        top: 18vh;
+        width: calc(10vw + 1.5rem);
+    }
+
+    #p3_I3 {
+        left: 82vw;
+        top: 5vh;
+        width: calc(5vw + 1.5rem);
+    }
+}
+
 
 
 
