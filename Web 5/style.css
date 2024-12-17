@@ -1,0 +1,535 @@
+.snap-container {
+    scroll-snap-type: y proximity;
+    overflow-y: scroll;
+    height: 100vh;
+}
+
+.page {
+    scroll-snap-align: start;
+    height: 100vh;
+    width: 100vw;
+}
+
+@font-face {
+    font-family: 'HALTimezone';
+    src: url('fonts/HALTimezoneTest-MonoRegular.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'HALTimezoneTest-MonoRegular';
+    src: url('fonts/HALTimezoneTest-MonoRegular.otf') format('otf');
+}
+
+body {
+    font-family: 'HALTimezoneTest-MonoRegular', monospace;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    background: #fff;
+}
+
+/* ----------------------------------------------------------- */
+/* ------------------------ Tableau 1 ------------------------ */
+/* ----------------------------------------------------------- */
+
+
+/* ------------------ Position ------------------ */
+/* ---------------------------------------------- */
+
+#page1 {
+    /* overflow: hidden; */
+    background-color: rgb(142, 145, 22);
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background-image: url("../svg/01_Pink.svg");
+}
+
+.p1_rectangle {
+    width: 25vw; /* Rectangle width */
+    height: 100vh; /* Rectangle height */
+    background-color: rgb(255, 0, 179); /* Rectangle color */
+    mix-blend-mode: multiply; /* Fusion/blend mode */
+    display: flex; /* Enable Flexbox for centering */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    position: relative; /* Keeps position rules */
+}
+
+.p1_icon {
+    width: 85%; /* Adjust size */
+    height: auto;
+}
+
+.p1_center-rectangle {
+    position: absolute;
+    height: 70vh;
+    width: 22vw;
+    
+}
+
+.p1_left-rectangle {
+    position: absolute;
+    left: 2%; /* Distance from the left edge */
+}
+
+.p1_right-rectangle {
+    position: absolute;
+    right: 2%; /* Distance from the left edge */
+    
+}
+
+.p1_left-rectangle img {
+    width: 90%;
+    height: auto;
+}
+.p1_right-rectangle img {
+    width: 80%;
+    height: auto;
+}
+.p1_center-rectangle img {
+    width: 80%;
+    /* height: 50vh; */
+    height: auto;
+}
+
+.initial-text-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    text-align: center;
+}
+
+.moving-text {
+    font-family: 'HALTimezone', monospace;
+    font-size: 34px;
+    margin: 20px 0;
+    opacity: 1;
+}
+
+/* ----------------------------------------------------------- */
+/* ------------------------ Tableau 2 ------------------------ */
+/* ----------------------------------------------------------- */
+
+
+#page2 {
+    background-color: #a4a4a4;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.squares-container {
+    position: absolute;
+    width: 60vw;
+    height: 60vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.square-svg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+#square-01 { z-index: 1; }
+#square-02 { z-index: 2; }
+#square-03 { z-index: 3; }
+
+/* ----------------------------------------------------------- */
+/* ------------------------ Tableau 3 ------------------------ */
+/* ----------------------------------------------------------- */
+#page3 {
+    background-color: #bababa;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+
+
+#page3 .p3_text-container {
+    position: absolute;
+    bottom: 10%;
+    width: 80%;
+    text-align: center;
+}
+
+#page3 .p3_text-container p {
+    font-family: 'HALTimezone', monospace;
+}
+
+#p3_text1 {
+    font-size: calc(1.8vw + 2.5rem);
+    position: absolute;
+    bottom: -2.3em;
+    left: 35%;             /* Adjust left position */
+    width: 90%;           /* Increase width of text block */
+    white-space: pre-wrap; /* Preserve line breaks at <br>, prevent automatic wrapping */
+
+}
+
+#p3_text2 {
+   font-size: calc(1.8vw + 2.5rem);
+    position: absolute;
+    bottom: 4em;
+    left: 35%;
+    width: 90%;
+    white-space: pre-wrap;
+}
+
+#p3_text3 {
+    font-size: calc(1.5vw + 0.5rem);
+    position: absolute;
+    left: -10%; 
+    top: 2%;   
+    width: auto;       
+    transform: rotate(-90deg);
+    transform-origin: top left;
+    white-space: nowrap;      
+    text-align: left;
+    word-spacing: calc(0.3vw + 0.1rem);       
+    line-height: 1.1;          
+    
+}
+
+#p3_text3.ready {
+    visibility: visible;
+}
+
+#p3_text4 {
+    font-size: calc(1.5vw + 0.5rem);
+    position: absolute;
+    left: 98%;        
+    top: 2%;           
+    width: auto;     
+    transform: rotate(-90deg);
+    transform-origin: top left;
+    white-space: nowrap;      
+    text-align: left;
+    word-spacing: calc(0.3vw + 0.1rem);          
+}
+
+#p3_text4.ready {
+    visibility: visible;
+}
+
+#p3_text4 .char {
+    position: relative;
+    display: inline-block;
+    opacity: 0;
+}
+
+#p3_text3 .char {
+    position: relative;
+    display: inline-block;
+    opacity: 0;
+}
+
+#p3_text5 {
+    font-size: calc(5vw + 1rem);
+    position: absolute;
+    left: -5.5vw;        
+    bottom: 68vh;  
+}
+
+#p3_text6 {
+    font-size: calc(5vw + 1rem);
+    position: absolute;
+    left: 10.5vw;        
+    bottom: 68vh;        
+}
+
+#p3_text7 {
+    font-size: calc(5vw + 1rem);
+    position: absolute;
+    left: 9vw;        
+    bottom: -16vh;         
+}
+
+#p3_text8 {
+    font-size: calc(1.8vw + 2.5rem);
+    position: absolute;
+    left: 4vw;        
+    bottom: -1vh;      
+    text-align: left;   
+    word-spacing: calc(0.05vw + 0.02rem);    
+    white-space: pre-wrap;
+}
+
+#p3_I {
+    position: absolute;
+    left: 4vw;
+    top: 31vh;
+    width: calc(10vw + 2rem);
+    rotate: 90deg;  
+}
+
+#p3_I2 {
+    position: absolute;
+    left : 45vw;
+    top: 15vh;
+    width: calc(15vw + 2rem);
+    rotate: 90deg;  
+}
+
+#p3_I3 {
+    position: absolute;
+    left :84vw;
+    top: 3vh;
+    width: calc(9vw + 2rem);
+    rotate: 90deg;  
+}
+
+.animations-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%;
+    height: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.animation-svg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+#anim1 {
+    scale: 2.5;
+    bottom: 90%;
+    left: 35%;
+}
+
+#anim2 {
+    scale: 2.5;
+    bottom: 90%;
+    left: 35%;
+}
+
+#anim3 {
+    scale: 2.5;
+    bottom: 90%;
+    left: 35%;
+}
+
+@keyframes flyIn {
+    0% {
+        opacity: 0;
+        transform: translate(var(--start-x), var(--start-y));
+    }
+    100% {
+        opacity: 1;
+        transform: translate(0, 0);
+    }
+}
+
+@keyframes flyOut {
+    0% {
+        opacity: 1;
+        transform: translate(0, 0);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(var(--start-x), var(--start-y));
+    }
+}
+
+#p3_text1 .char,
+#p3_text2 .char,
+#p3_text3 .char,
+#p3_text4 .char,
+#p3_text5 .char,
+#p3_text6 .char,
+#p3_text7 .char,
+#p3_text8 .char {
+    position: relative;
+    display: inline-block;
+    opacity: 0;
+    visibility: visible;
+    animation: flyIn 1.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+#p3_text1 .char-reverse,
+#p3_text2 .char-reverse,
+#p3_text3 .char-reverse,
+#p3_text4 .char-reverse,
+#p3_text5 .char-reverse,
+#p3_text6 .char-reverse,
+#p3_text7 .char-reverse,
+#p3_text8 .char-reverse {
+    position: relative;
+    display: inline-block;
+    opacity: 1;
+    visibility: visible;
+    animation: flyOut 1.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* MacBook specific adjustments */
+@media screen and (max-width: 768px) {
+    #p3_text3, #p3_text4 {
+        font-size: calc(2vw + 0.8rem);
+    }
+    
+    #p3_text5, #p3_text6, #p3_text7, #p3_text8 {
+        font-size: calc(6vw + 0.8rem);
+    }
+}
+
+@media screen and (min-width: 2000px) {
+    #p3_text3, #p3_text4 {
+        font-size: calc(1.5vw + 0.5rem);
+    }
+    
+    #p3_text5, #p3_text6, #p3_text7, #p3_text8 {
+        font-size: calc(4vw + 1rem);
+    }
+}
+
+/* MacBook specific adjustments */
+@media screen and (min-width: 1512px) and (max-width: 1513px) and (min-height: 982px) and (max-height: 983px) {
+    .p1_rectangle {
+        width: 22vw;
+    }
+
+    .p1_center-rectangle {
+        width: 20vw;
+    }
+
+    #p3_text1, #p3_text2 {
+        font-size: 5em;
+    }
+
+    #p3_text3, #p3_text4 {
+        font-size: calc(1.4vw + 0.4rem);
+    }
+
+    #p3_text5, #p3_text6, #p3_text7, #p3_text8 {
+        font-size: calc(4vw + 0.8rem);
+    }
+
+    .squares-container {
+        width: 50vw;
+        height: 50vh;
+    }
+
+    #p3_I {
+        width: calc(8vw + 1.5rem);
+    }
+
+    #p3_I2 {
+        width: calc(12vw + 1.5rem);
+    }
+
+    #p3_I3 {
+        width: calc(7vw + 1.5rem);
+    }
+}
+
+/* MacBook Pro 14" (3024x1964) specific adjustments */
+@media screen and (min-width: 3024px) and (min-height: 1964px) {
+    /* Text positioning and sizing adjustments */
+    #p3_text1 {
+        font-size: 5em;
+        bottom: -1.8em;
+        left: 38%;
+    }
+
+    #p3_text2 {
+        font-size: 5em;
+        bottom: 5em;
+        left: 38%;
+    }
+
+    #p3_text3 {
+        font-size: calc(1.2vw + 0.3rem);
+        left: -5%;
+        top: 5%;
+    }
+
+    #p3_text4 {
+        font-size: calc(1.2vw + 0.3rem);
+        left: 95%;
+        top: 5%;
+    }
+
+    #p3_text5 {
+        font-size: calc(3vw + 0.8rem);
+        left: -2.5vw;
+        bottom: 72vh;
+    }
+
+    #p3_text6 {
+        font-size: calc(3vw + 0.8rem);
+        left: 8.5vw;
+        bottom: 72vh;
+    }
+
+    #p3_text7 {
+        font-size: calc(3vw + 0.8rem);
+        left: 7vw;
+        bottom: -12vh;
+    }
+
+    #p3_text8 {
+        font-size: calc(3vw + 0.8rem);
+        left: 3vw;
+        bottom: 2vh;
+    }
+
+    /* SVG adjustments */
+    #p3_I {
+        left: 6vw;
+        top: 35vh;
+        width: calc(6vw + 1.5rem);
+    }
+
+    #p3_I2 {
+        left: 42vw;
+        top: 18vh;
+        width: calc(10vw + 1.5rem);
+    }
+
+    #p3_I3 {
+        left: 82vw;
+        top: 5vh;
+        width: calc(5vw + 1.5rem);
+    }
+}
+
+
+/* ----------------------------------------------------------- */
+/* ------------------------ Tableau 4 ------------------------ */
+/* ----------------------------------------------------------- */
+
+#page4 {
+    background-color: #422323;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+
