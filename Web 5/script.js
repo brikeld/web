@@ -1,27 +1,31 @@
 document.addEventListener('DOMContentLoaded', () => {
     const pages = document.querySelectorAll('.page');
+    let activeTimelines = [];
 
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.target.id === 'page3') {
                 const ratio = entry.intersectionRatio;
-                if (ratio >= 0.5) {
-                    // When page3 is at least 50% visible
+                if (ratio >= 0.95) { // Changed from 0.5 to 0.95
+                    // When page3 is almost fully visible
                     console.log(`Arrived at ${entry.target.id}`);
                     startSquaresAnimation();
                     if (typeof startParaCreation === 'function') {
                         startParaCreation();
                     }
                 } else {
-                    // When page3 is less than 50% visible
+                    // As soon as we start scrolling away
                     console.log(`Leaving ${entry.target.id}`);
+                    reverseSquaresAnimation();
                     if (typeof reverseParaCreation === 'function') {
                         reverseParaCreation();
                     }
                 }
             }
         });
-    }, { threshold: [0, 0.5, 1] }); // Adjust the threshold value here to change when leaving page 3
+    }, { 
+        threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 0.95, 1] // More granular thresholds
+    });
 
     pages.forEach(page => {
         observer.observe(page);
@@ -31,25 +35,34 @@ document.addEventListener('DOMContentLoaded', () => {
 // Encapsulate the animation code into a function
 function startSquaresAnimation() {
     const animations = ['anim1', 'anim2', 'anim3'];
+    activeTimelines = [];
 
     setTimeout(() => {
         animations.forEach((animId, index) => {
             const svgObject = document.getElementById(animId);
             
             if (svgObject.contentDocument) {
-                startAnimation(svgObject.contentDocument, index + 1);
+                const timeline = startAnimation(svgObject.contentDocument, index + 1);
+                if (timeline) activeTimelines.push(timeline);
             } else {
                 svgObject.addEventListener("load", function() {
-                    startAnimation(svgObject.contentDocument, index + 1);
+                    const timeline = startAnimation(svgObject.contentDocument, index + 1);
+                    if (timeline) activeTimelines.push(timeline);
                 });
             }
         });
     }, 2000);
 }
 
+function reverseSquaresAnimation() {
+    activeTimelines.forEach(timeline => {
+        timeline.reverse();
+    });
+}
+
 function startAnimation(svgDoc, index) {
     const textPath = svgDoc.querySelector('textPath');
-    if (!textPath) return;
+    if (!textPath) return null;
 
     // Create a timeline for continuous movement
     const timeline = gsap.timeline({
@@ -59,18 +72,17 @@ function startAnimation(svgDoc, index) {
 
     // Set initial state
     gsap.set(textPath, {
-        attr: { startOffset: "100%" },
-        // fontSize: "4.5em",
+        attr: { startOffset: "100%" }
     });
 
     // Create the animation
-    timeline
-        .to(textPath, {
-            // fontSize: "1.5em",
-            attr: { startOffset: "-910%" }, 
-            duration: 50,
-            ease: "none"
-        }, );
+    timeline.to(textPath, {
+        attr: { startOffset: "-910%" },
+        duration: 50,
+        ease: "none"
+    });
+
+    return timeline;
 }
 ////////////////////////////////////////
 ////////////////////////////////////////
