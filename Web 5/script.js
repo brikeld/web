@@ -1,21 +1,52 @@
+/* ----------------------------------------------------------- */
+/* ------------------- Global Variables ---------------------- */
+/* ----------------------------------------------------------- */
+
+let activeTimelines = [];
+let svgAnimations = [];
+let isAnimating = false;  // Track animation state
+
+/* ----------------------------------------------------------- */
+/* ------------------ Intersection Observer ------------------ */
+/* ----------------------------------------------------------- */
+
 document.addEventListener('DOMContentLoaded', () => {
     const pages = document.querySelectorAll('.page');
-    let activeTimelines = [];
-
+    
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-            if (entry.target.id === 'page3') {
-                const ratio = entry.intersectionRatio;
-                if (ratio >= 0.95) { // Changed from 0.5 to 0.95
-                    // When page3 is almost fully visible
-                    console.log(`Arrived at ${entry.target.id}`);
+            const ratio = entry.intersectionRatio;
+            
+            if (entry.target.id === 'page1') {
+                if (ratio < 0.5 && !isAnimating) {
+                    // Moving down from page1
+                    console.log('Moving down from page1');
+                    isAnimating = true;
+                    animateSVGsToPage2();
+                } else if (ratio > 0.5 && isAnimating) {
+                    // Moving back up to page1
+                    console.log('Moving back up to page1');
+                    reverseSVGAnimation();
+                }
+            }
+            
+            if (ratio >= 0.95) {
+                // When any page is almost fully visible
+                console.log(`Arrived at ${entry.target.id}`);
+                
+                // Specific actions for page3
+                if (entry.target.id === 'page3') {
                     startSquaresAnimation();
                     if (typeof startParaCreation === 'function') {
                         startParaCreation();
                     }
-                } else {
-                    // As soon as we start scrolling away
-                    console.log(`Leaving ${entry.target.id}`);
+                }
+            } else {
+                // When leaving any page
+                console.log(`Leaving ${entry.target.id}`);
+                
+                // Specific actions for page3
+                if (entry.target.id === 'page3') {
                     reverseSquaresAnimation();
                     if (typeof reverseParaCreation === 'function') {
                         reverseParaCreation();
@@ -32,10 +63,138 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// Encapsulate the animation code into a function
+/* ----------------------------------------------------------- */
+/* ------------------------ Tableau 1 ------------------------ */
+/* ----------------------------------------------------------- */
+
+// No specific Page 1 functions currently
+// Page 1 serves as starting point for animations
+
+/* ----------------------------------------------------------- */
+/* ------------------------ Tableau 2 ------------------------ */
+/* ----------------------------------------------------------- */
+
+function animateSVGsToPage2() {
+    // Clear any existing animations
+    svgAnimations.forEach(tl => tl.kill());
+    svgAnimations = [];
+
+    const originalLetters = document.querySelectorAll('#page1 .p1_rectangle img');
+    const targetLetters = document.querySelectorAll('#page2 .moving-letter');
+    
+    // Get center letter's dimensions for reference
+    const centerLetter = document.querySelector('#page1 .p1_center-rectangle img');
+    const centerRect = centerLetter.getBoundingClientRect();
+    const centerWidth = centerRect.width;
+    const sideWidth = centerWidth * 0.7; // Make side letters 70% of center letter size
+    
+    // Calculate positions for side-by-side arrangement
+    const spacing = 20; // Gap between SVGs
+    const totalWidth = centerWidth + (sideWidth * 2) + (spacing * 2);
+    const startX = (window.innerWidth - totalWidth) / 2;
+    
+    // You can also adjust the Y position here
+    const targetY = window.innerHeight / 2 - centerRect.height / 2;
+    
+    const masterTimeline = gsap.timeline({
+        onComplete: () => {
+            console.log('Animation complete');
+            isAnimating = true;
+        }
+    });
+    
+    originalLetters.forEach((orig, index) => {
+        const target = targetLetters[index];
+        const origRect = orig.getBoundingClientRect();
+        
+        // Calculate target width based on position
+        const targetWidth = index === 1 ? centerWidth : sideWidth;
+        
+        // Calculate target X position (adjusting for different widths)
+        let targetX;
+        if (index === 0) {
+            targetX = startX;
+        } else if (index === 1) {
+            targetX = startX + sideWidth + spacing;
+        } else {
+            targetX = startX + sideWidth + spacing + centerWidth + spacing;
+        }
+        
+        // Set initial state
+        gsap.set(target, {
+            opacity: 0,
+            x: origRect.left,
+            y: origRect.top,
+            width: origRect.width,
+            filter: 'none'
+        });
+        
+        // Create individual timeline
+        const tl = gsap.timeline();
+        
+        tl.to(target, {
+            opacity: 1,
+            x: targetX,
+            y: targetY,
+            width: targetWidth,
+            filter: 'brightness(0)', // Make SVG black
+            duration: 1.2,
+            ease: "power2.inOut"
+        })
+        .to(orig, {
+            opacity: 0,
+            duration: 0.8
+        }, 0);
+        
+        masterTimeline.add(tl, 0);
+        svgAnimations.push(tl);
+    });
+}
+
+function reverseSVGAnimation() {
+    if (!isAnimating) return;
+
+    const originalLetters = document.querySelectorAll('#page1 .p1_rectangle img');
+    const targetLetters = document.querySelectorAll('#page2 .moving-letter');
+    
+    const masterTimeline = gsap.timeline({
+        onComplete: () => {
+            console.log('Reverse animation complete');
+            isAnimating = false;
+        }
+    });
+
+    originalLetters.forEach((orig, index) => {
+        const target = targetLetters[index];
+        const origRect = orig.getBoundingClientRect();
+        
+        const tl = gsap.timeline();
+        
+        tl.to(target, {
+            opacity: 0,
+            x: origRect.left,
+            y: origRect.top,
+            width: origRect.width,
+            filter: 'none',
+            duration: 0.8,
+            ease: "power2.inOut"
+        })
+        .to(orig, {
+            opacity: 1,
+            duration: 1.2
+        }, 0);
+        
+        masterTimeline.add(tl, 0);
+    });
+}
+
+/* ----------------------------------------------------------- */
+/* ------------------------ Tableau 3 ------------------------ */
+/* ----------------------------------------------------------- */
+
 function startSquaresAnimation() {
     const animations = ['anim1', 'anim2', 'anim3'];
-    activeTimelines = [];
+    activeTimelines = []; // Reset the array instead of declaring it
 
     setTimeout(() => {
         animations.forEach((animId, index) => {
@@ -84,9 +243,11 @@ function startAnimation(svgDoc, index) {
 
     return timeline;
 }
-////////////////////////////////////////
-////////////////////////////////////////
 
-////////////////////////////////////////
+/* ----------------------------------------------------------- */
+/* ------------------------ Tableau 4 ------------------------ */
+/* ----------------------------------------------------------- */
+
+// Add any Page 4 specific functions here
 
 
