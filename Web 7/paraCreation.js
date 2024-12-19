@@ -14,39 +14,39 @@ function startParaCreation() {
             distance: 5
         },
         p3_text3: {//paragraph rotated at the left
-            baseDelay: 0.01,
-            randomDelay: 0,
-            animationDuration: 1.5,
-            distance: 5
+            baseDelay: .01,
+            randomDelay: 0.8,
+            animationDuration: 2.5,
+            distance: 50
         },
         p3_text4: { //paragraph rotated at the right
             baseDelay: 0.01,
-            randomDelay: 0.5,
-            animationDuration: 2.5,
+            randomDelay: 0.8,
+            animationDuration: 3.9,
             distance: 5
         },
         p3_text5: {
             baseDelay: 0.05,
             randomDelay: 0.2,
-            animationDuration: 1.8,
+            animationDuration: 4.2,
             distance: 5
         },
         p3_text6: {
             baseDelay: 0.05,
             randomDelay: 0.2,
-            animationDuration: 1.8,
+            animationDuration: 5.2,
             distance: 10
         },
         p3_text7: {
             baseDelay: 0.08,
             randomDelay: 0.3,
-            animationDuration: 2,
+            animationDuration: 3.7,
             distance: 10
         },
         p3_text8: {
             baseDelay: 0.03,
             randomDelay: 0.4,
-            animationDuration: 1.6,
+            animationDuration: 4,
             distance: 10
         }
     };
@@ -97,7 +97,6 @@ function startParaCreation() {
         const chars = element.querySelectorAll('.char');
         chars.forEach(char => {
             char.addEventListener('animationend', () => {
-                console.log(`Animation ended for character: ${char.textContent}`);
             });
         });
     }

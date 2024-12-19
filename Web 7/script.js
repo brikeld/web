@@ -56,7 +56,6 @@ function setupPageObservers() {
 function handlePage1Animations(ratio) {
     if (ratio < 0.5 && !isAnimating) {
         // Moving down from page1
-        console.log('Moving down from page1');
         isAnimating = true;
     } else if (ratio > 0.5 && isAnimating) {
         // Moving back up to page1
@@ -71,8 +70,6 @@ function handlePage1Animations(ratio) {
 
 function handlePage2Animations(ratio) {
     const p2TextContainer = document.querySelector('.p2_text-container');
-    console.log('p2TextContainer:', p2TextContainer);
-
     // Calculate bottom value from 100vh to 0vh
     const bottomValue = (1 - ratio) * 100;
     // Animate bottom property using GSAP
@@ -89,15 +86,11 @@ function handlePage2Animations(ratio) {
 
 function handlePage3Animations(ratio, entry) {
     if (ratio >= 0.95) {
-        // When page3 is almost fully visible
-        console.log(`Arrived at ${entry.target.id}`);
         startSquaresAnimation();
         if (typeof startParaCreation === 'function') {
             startParaCreation();
         }
     } else {
-        // When leaving page3
-        console.log(`Leaving ${entry.target.id}`);
         reverseSquaresAnimation();
         if (typeof reverseParaCreation === 'function') {
             reverseParaCreation();
@@ -123,7 +116,7 @@ function startSquaresAnimation() {
                 });
             }
         });
-    }, 2000);
+    }, 3000);
 }
 
 function reverseSquaresAnimation() {

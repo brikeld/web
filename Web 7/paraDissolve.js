@@ -1,49 +1,80 @@
 document.addEventListener("DOMContentLoaded", function() {
-    const reconstructText = (element, baseDelay = 0) => {
-      let text = element.textContent.split("");
-      let result = "";
-  
-      text.forEach(function(char, index) {
-        let randomDelay = baseDelay + Math.random(); // Random delay between 0 and 1 second
-        result += (char.trim() === "") 
-          ? " " 
-          : `<span class="char" 
-              style="--end-x: 0px; --end-y: 0px; animation-delay: ${randomDelay}s;">
-                ${char}
-             </span>`;
-      });
-  
-      element.innerHTML = result;
-    };
-  
     const deconstructText = (element) => {
-      const chars = element.querySelectorAll(".char");
-  
-      chars.forEach((char) => {
-        const startPosition = getRandomStartPosition();
-        char.style.setProperty("--start-x", `${startPosition.x}px`);
-        char.style.setProperty("--start-y", `${startPosition.y}px`);
-        char.classList.add("deconstruct");
-      });
+        if (!element) return;
+        
+        const chars = element.querySelectorAll(".char");
+        chars.forEach((char) => {
+            const startPosition = getRandomStartPosition();
+            char.style.setProperty("--start-x", `${startPosition.x}px`);
+            char.style.setProperty("--start-y", `${startPosition.y}px`);
+            
+            // Remove existing animations first
+            char.style.animation = 'none';
+            char.offsetHeight; // Force reflow
+            
+            // Add dissolve class
+            char.classList.add("dissolve");
+        });
     };
-  
+
+    const dissolveSVGText = () => {
+        const animations = ['anim1', 'anim2', 'anim3'];
+        
+        animations.forEach((animId) => {
+            const svgObject = document.getElementById(animId);
+            if (svgObject && svgObject.contentDocument) {
+                const textPath = svgObject.contentDocument.querySelector('textPath');
+                if (textPath) {
+                    textPath.style.opacity = '1';
+                    textPath.style.transition = 'opacity 2s ease-out';
+                    textPath.style.opacity = '0';
+                }
+            }
+        });
+    };
+    
     const getRandomStartPosition = () => {
-      const angle = Math.random() * Math.PI * 2; // Random angle
-      const distance = 40 + Math.random() * 50; // Random distance off-screen
-      return {
-        x: Math.cos(angle) * distance,
-        y: Math.sin(angle) * distance,
-      };
+        const angle = Math.random() * Math.PI * 2;
+        const distance = 30 + Math.random() * 500; // Increased distance for more dramatic effect
+        return {
+            x: Math.cos(angle) * distance*2,
+            y: Math.sin(angle) * distance*2,
+        };
     };
-  
-    // Select elements and reconstruct text
-    const para1 = document.querySelector(".para");
-    const para2 = document.querySelector(".para2");
-    reconstructText(para1);
-    reconstructText(para2, 1); // Base delay for second paragraph
-  
-    // Trigger deconstruction after 3 seconds
-    setTimeout(() => deconstructText(para1), 3000);
-    setTimeout(() => deconstructText(para2), 3000);
-  });
-  
+
+    let observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                setTimeout(() => {
+                    // Handle text elements
+                    const p3_text3 = document.getElementById("p3_text3");
+                    const p3_text4 = document.getElementById("p3_text4");
+                    
+                    if (p3_text3) {
+                        setTimeout(() => {
+                            deconstructText(p3_text3);
+                        }, 5200); // Wait for initial animation to complete
+                    }
+                    
+                    if (p3_text4) {
+                        setTimeout(() => {
+                            deconstructText(p3_text4);
+                        }, 6000); // Wait for initial animation to complete
+                    }
+
+                    // Handle SVG text paths
+                    setTimeout(() => dissolveSVGText(), 5900);
+                    
+                    observer.disconnect();
+                }, 3000);
+            }
+        });
+    }, {
+        threshold: 0.5
+    });
+
+    const page3 = document.getElementById("page3");
+    if (page3) {
+        observer.observe(page3);
+    }
+});
