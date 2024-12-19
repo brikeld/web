@@ -1,0 +1,841 @@
+.snap-container {
+    scroll-snap-type: y mandatory; /* Change to mandatory for stricter snapping */
+    overflow-y: scroll;
+    height: 100vh;
+}
+
+.page {
+    scroll-snap-align: start;
+    scroll-snap-stop: always; /* Force stop at each page */
+    height: 100vh;
+    width: 100%; /* Changed from 100vw */
+}
+
+@font-face {
+    font-family: 'HALTimezone';
+    src: url('fonts/HALTimezoneTest-MonoRegular.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'HALTimezoneTest-MonoRegular';
+    src: url('fonts/HALTimezoneTest-MonoRegular.otf') format('otf');
+}
+
+@font-face {
+    font-family: 'BeautifulWorld';
+    src: url('fonts/Beautifulworldnbp-G0zq.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'HALTimezoneTest';
+        src: url('./fonts/HALTimezoneTest-MonoRegular.otf') format('opentype');
+        font-weight: normal;
+        font-style: normal;
+}
+
+body {
+    font-family: 'HALTimezoneTest-MonoRegular', monospace;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    background: #fff;
+}
+
+/* ----------------------------------------------------------- */
+/* ------------------------ Tableau 1 ------------------------ */
+/* ----------------------------------------------------------- */
+
+
+/* ------------------ Position ------------------ */
+/* ---------------------------------------------- */
+
+#page1 {
+    /* overflow: hidden; */
+    background-color: rgb(195, 197, 36);
+    height: 100vh;
+    width: 100%; /* Changed from 100vw */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background-image: url("../svg/01_Pink.svg");
+    z-index: 5; /* Higher than .p2_text-container */
+}
+
+.p1_rectangle {
+    width: 25vw; /* Rectangle width */
+    height: 100vh; /* Rectangle height */
+    background-color: rgb(255, 0, 179); /* Rectangle color */
+    mix-blend-mode: multiply; /* Fusion/blend mode */
+    display: flex; /* Enable Flexbox for centering */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    position: relative; /* Keeps position rules */
+    z-index: 6; /* Ensure content inside #page1 stays above */
+}
+
+.p1_icon {
+    width: 85%; /* Adjust size */
+    height: auto;
+}
+
+.p1_center-rectangle {
+    position: absolute;
+    height: 70vh;
+    width: 22vw;
+    
+}
+
+.p1_left-rectangle {
+    position: absolute;
+    left: 2%; /* Distance from the left edge */
+}
+
+.p1_right-rectangle {
+    position: absolute;
+    right: 2%; /* Distance from the left edge */
+    
+}
+
+.p1_left-rectangle img {
+    width: 90%;
+    height: auto;
+}
+.p1_right-rectangle img {
+    width: 80%;
+    height: auto;
+}
+.p1_center-rectangle img {
+    width: 80%;
+    /* height: 50vh; */
+    height: auto;
+}
+
+.initial-text-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    text-align: center;
+}
+
+.moving-text {
+    font-family: 'HALTimezone', monospace;
+    font-size: 34px;
+    margin: 20px 0;
+    opacity: 1;
+}
+
+/* ----------------------------------------------------------- */
+/* ------------------------ Tableau 2 ------------------------ */
+/* ----------------------------------------------------------- */
+
+
+#page2 {
+    background-color: #a4a4a4;
+    height: 100vh;
+    width: 100%; /* Changed from 100vw */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.squares-container {
+    position: absolute;
+    width: 60vw;
+    height: 60vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.square-svg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+#square-01 { z-index: 1; }
+#square-02 { z-index: 2; }
+#square-03 { z-index: 3; }
+
+.p2_text-container {
+    position: absolute;
+    bottom: 100vh; /* Start from 100vh */
+    width: 100%;
+    height: 100%;
+    z-index: 2; /* Lower than other elements */
+}
+
+#p2_text1 {
+    font-size: 5.5vw;
+    position: absolute;
+    top: 42%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%;
+    font-family: 'AquilineTwo', 'HALTimezone', monospace;
+    font-size: 4vw;
+    letter-spacing: 0.5vw;
+    line-height: 1.2;
+    color: rgb(142,145,22);
+    text-transform: uppercase;
+    text-align: center;
+    z-index: 10000;
+    
+}
+
+#p2_text2 {
+    position: absolute;
+    font-family: 'AquilineTwo', 'HALTimezone', monospace;
+    letter-spacing: 0.9vw;
+    text-transform: uppercase;
+    line-height: 1.2;
+    text-align: center;
+    font-size: 2.5vw;
+    left: 39%;
+    top: 50%;
+    transform: rotate(-90deg) translateY(-50%);
+    transform-origin: left center;
+    width: 60vh;
+    white-space: nowrap; 
+}
+
+#p2_text2 br { /* This ensures <br> tags still work */
+    display: block;
+    content: "";
+}
+
+#p2_text3 {
+    position: absolute;
+    font-family: 'AquilineTwo', 'HALTimezone', monospace;
+    letter-spacing: 0.9vw;
+    text-transform: uppercase;
+    line-height: 1.2;
+    text-align: center;
+    font-size: 2.5vw;
+    left: 5%; /* Mirror of left: 41% from p2_text2 */
+    top: 16%;
+    transform: rotate(90deg) translateY(-50%);
+    transform-origin: right center; /* Changed from left to right */
+    width: 60vh;
+    white-space: nowrap;
+}
+
+#p2_text3 br { /* Same br handling as p2_text2 */
+    display: block;
+    content: "";
+}
+
+/* Responsive adjustments for page 2 text */
+@media screen and (max-width: 768px) {
+    .p2_text-container {
+        width: 80%;
+        margin: 10vw;
+    }
+    
+    #p2_text1 {
+        font-size: 5vw;
+        line-height: 4vw;
+        letter-spacing: 0.3vw;
+    }
+}
+
+@media screen and (min-width: 2000px) {
+    .p2_text-container {
+        max-width: 1800px;
+    }
+    
+    #p2_text1 {
+        font-size: 3vw;
+        line-height: 2.5vw;
+    }
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+    #p2_text1 {
+        font-size: 5vw;
+        width: 80%;
+    }
+    
+    #p2_text2, #p2_text3 {
+        font-size: 3vw;
+        width: 50vh;
+    }
+}
+
+@media screen and (min-width: 2000px) {
+    #p2_text1 {
+        font-size: 3vw;
+    }
+    
+    #p2_text2, #p2_text3 {
+        font-size: 2vw;
+    }
+}
+
+/* ----------------------------------------------------------- */
+/* ------------------------ Tableau 3 ------------------------ */
+/* ----------------------------------------------------------- */
+#page3 {
+    background-color: #bababa;
+    height: 100vh;
+    width: 100%; /* Changed from 100vw */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+#page3 .p3_text-container {
+    position: absolute;
+    bottom: 10%;
+    width: 80%;
+    text-align: center;
+}
+
+#page3 .p3_text-container p {
+    font-family: 'HALTimezone', monospace;
+}
+
+#p3_text1 {
+    font-size: calc(1.8vw + 2.5rem);
+    position: absolute;
+    bottom: -2.3em;
+    left: 35%;             /* Adjust left position */
+    width: 90%;           /* Increase width of text block */
+    white-space: pre-wrap; /* Preserve line breaks at <br>, prevent automatic wrapping */
+
+}
+
+#p3_text2 {
+   font-size: calc(1.8vw + 2.5rem);
+    position: absolute;
+    bottom: 4em;
+    left: 35%;
+    width: 90%;
+    white-space: pre-wrap;
+}
+
+#p3_text3 {
+    font-size: calc(1.5vw + 0.5rem);
+    position: absolute;
+    left: -10%; 
+    top: 2%;   
+    width: auto;       
+    transform: rotate(-90deg);
+    transform-origin: top left;
+    white-space: nowrap;      
+    text-align: left;
+    word-spacing: calc(0.3vw + 0.1rem);       
+    line-height: 1.1;          
+    
+}
+
+#p3_text3.ready {
+    visibility: visible;
+}
+
+#p3_text4 {
+    font-size: calc(1.5vw + 0.5rem);
+    position: absolute;
+    left: 98%;        
+    top: 2%;           
+    width: auto;     
+    transform: rotate(-90deg);
+    transform-origin: top left;
+    white-space: nowrap;      
+    text-align: left;
+    word-spacing: calc(0.3vw + 0.1rem);          
+}
+
+#p3_text4.ready {
+    visibility: visible;
+}
+
+#p3_text4 .char {
+    position: relative;
+    display: inline-block;
+    opacity: 0;
+}
+
+#p3_text3 .char {
+    position: relative;
+    display: inline-block;
+    opacity: 0;
+}
+
+#p3_text5 {
+    font-size: calc(5vw + 1rem);
+    position: absolute;
+    left: -5.5vw;        
+    bottom: 68vh;  
+}
+
+#p3_text6 {
+    font-size: calc(5vw + 1rem);
+    position: absolute;
+    left: 10.5vw;        
+    bottom: 68vh;        
+}
+
+#p3_text7 {
+    font-size: calc(5vw + 1rem);
+    position: absolute;
+    left: 9vw;        
+    bottom: -16vh;         
+}
+
+#p3_text8 {
+    font-size: calc(1.8vw + 2.5rem);
+    position: absolute;
+    left: 4vw;        
+    bottom: -1vh;      
+    text-align: left;   
+    word-spacing: calc(0.05vw + 0.02rem);    
+    white-space: pre-wrap;
+}
+
+#p3_I {
+    position: absolute;
+    left: 4vw;
+    top: 31vh;
+    width: calc(10vw + 2rem);
+    rotate: 90deg;  
+}
+
+#p3_I2 {
+    position: absolute;
+    left : 45vw;
+    top: 15vh;
+    width: calc(15vw + 2rem);
+    rotate: 90deg;  
+}
+
+#p3_I3 {
+    position: absolute;
+    left :84vw;
+    top: 3vh;
+    width: calc(9vw + 2rem);
+    rotate: 90deg;  
+}
+
+.animations-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%;
+    height: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.animation-svg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+#anim1 {
+    scale: 2.5;
+    bottom: 90%;
+    left: 35%;
+}
+
+#anim2 {
+    scale: 2.5;
+    bottom: 90%;
+    left: 35%;
+}
+
+#anim3 {
+    scale: 2.5;
+    bottom: 90%;
+    left: 35%;
+}
+
+@keyframes flyIn {
+    0% {
+        opacity: 0;
+        transform: translate(var(--start-x), var(--start-y));
+    }
+    100% {
+        opacity: 1;
+        transform: translate(0, 0);
+    }
+}
+
+@keyframes flyOut {
+    0% {
+        opacity: 1;
+        transform: translate(0, 0);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(var(--start-x), var(--start-y));
+    }
+}
+
+#p3_text1 .char,
+#p3_text2 .char,
+#p3_text3 .char,
+#p3_text4 .char,
+#p3_text5 .char,
+#p3_text6 .char,
+#p3_text7 .char,
+#p3_text8 .char {
+    position: relative;
+    display: inline-block;
+    opacity: 0;
+    visibility: visible;
+    animation: flyIn 1.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+#p3_text1 .char-reverse,
+#p3_text2 .char-reverse,
+#p3_text3 .char-reverse,
+#p3_text4 .char-reverse,
+#p3_text5 .char-reverse,
+#p3_text6 .char-reverse,
+#p3_text7 .char-reverse,
+#p3_text8 .char-reverse {
+    position: relative;
+    display: inline-block;
+    opacity: 1;
+    visibility: visible;
+    animation: flyOut 1.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.rotatable-char {
+    display: inline-block;
+    transform-origin: center;
+    transition: transform 0.1s ease;
+}
+
+/* MacBook specific adjustments */
+@media screen and (max-width: 768px) {
+    #p3_text3, #p3_text4 {
+        font-size: calc(2vw + 0.8rem);
+    }
+    
+    #p3_text5, #p3_text6, #p3_text7, #p3_text8 {
+        font-size: calc(6vw + 0.8rem);
+    }
+}
+
+@media screen and (min-width: 2000px) {
+    #p3_text3, #p3_text4 {
+        font-size: calc(1.5vw + 0.5rem);
+    }
+    
+    #p3_text5, #p3_text6, #p3_text7, #p3_text8 {
+        font-size: calc(4vw + 1rem);
+    }
+}
+
+/* MacBook specific adjustments */
+@media screen and (min-width: 1512px) and (max-width: 1513px) and (min-height: 982px) and (max-height: 983px) {
+    .p1_rectangle {
+        width: 22vw;
+    }
+
+    .p1_center-rectangle {
+        width: 20vw;
+    }
+
+    #p3_text1, #p3_text2 {
+        font-size: 5em;
+    }
+
+    #p3_text3, #p3_text4 {
+        font-size: calc(1.4vw + 0.4rem);
+    }
+
+    #p3_text5, #p3_text6, #p3_text7, #p3_text8 {
+        font-size: calc(4vw + 0.8rem);
+    }
+
+    .squares-container {
+        width: 50vw;
+        height: 50vh;
+    }
+
+    #p3_I {
+        width: calc(8vw + 1.5rem);
+    }
+
+    #p3_I2 {
+        width: calc(12vw + 1.5rem);
+    }
+
+    #p3_I3 {
+        width: calc(7vw + 1.5rem);
+    }
+}
+
+/* MacBook Pro 14" (3024x1964) specific adjustments */
+@media screen and (min-width: 3024px) and (min-height: 1964px) {
+    /* Text positioning and sizing adjustments */
+    #p3_text1 {
+        font-size: 5em;
+        bottom: -1.8em;
+        left: 38%;
+    }
+
+    #p3_text2 {
+        font-size: 5em;
+        bottom: 5em;
+        left: 38%;
+    }
+
+    #p3_text3 {
+        font-size: calc(1.2vw + 0.3rem);
+        left: -5%;
+        top: 5%;
+    }
+
+    #p3_text4 {
+        font-size: calc(1.2vw + 0.3rem);
+        left: 95%;
+        top: 5%;
+    }
+
+    #p3_text5 {
+        font-size: calc(3vw + 0.8rem);
+        left: -2.5vw;
+        bottom: 72vh;
+    }
+
+    #p3_text6 {
+        font-size: calc(3vw + 0.8rem);
+        left: 8.5vw;
+        bottom: 72vh;
+    }
+
+    #p3_text7 {
+        font-size: calc(3vw + 0.8rem);
+        left: 7vw;
+        bottom: -12vh;
+    }
+
+    #p3_text8 {
+        font-size: calc(3vw + 0.8rem);
+        left: 3vw;
+        bottom: 2vh;
+    }
+
+    /* SVG adjustments */
+    #p3_I {
+        left: 6vw;
+        top: 35vh;
+        width: calc(6vw + 1.5rem);
+    }
+
+    #p3_I2 {
+        left: 42vw;
+        top: 18vh;
+        width: calc(10vw + 1.5rem);
+    }
+
+    #p3_I3 {
+        left: 82vw;
+        top: 5vh;
+        width: calc(5vw + 1.5rem);
+    }
+}
+
+.clone-svg {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.static-rectangle {
+    opacity: 1 !important;
+    background-color: transparent;
+    mix-blend-mode: normal;
+}
+
+.moving-letter {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* ----------------------------------------------------------- */
+/* ------------------------ Tableau 4 ------------------------ */
+/* ----------------------------------------------------------- */
+
+#page4 {
+    font-family: 'HALTimezoneTest';
+    src: url('./fonts/HALTimezoneTest-MonoRegular.otf') format('opentype');
+    background-color: #ffffff;
+    height: 100vh;
+    width: 100%; /* Changed from 100vw */
+    display: block; /* Change from flex to block */
+    position: relative;
+    padding: 2vw; /* Add some padding */
+    overflow: hidden; /* Contains the scrolling content */
+}
+
+.p4_text-container {
+    font-family: 'HALTimezoneTest';
+    src: url('./fonts/HALTimezoneTest-MonoRegular.otf') format('opentype');
+    height: 100vh;
+    max-height: 100vh;
+    width: 90%;
+    margin: 0 auto;
+    padding: 2vw;
+    overflow-y: auto; /* Enable vertical scrolling */
+    -ms-overflow-style: none; /* Hide scrollbar for IE/Edge */
+    scrollbar-width: none; /* Hide scrollbar for Firefox */
+    position: relative;
+    z-index: 1; /* Below overlay */
+}
+
+/* Hide webkit scrollbar but keep functionality */
+.p4_text-container::-webkit-scrollbar {
+    display: none;
+}
+
+#p4_overlay-text {
+    font-size: 9vw;
+    line-height: 7vw;
+    text-transform: uppercase;
+    position: absolute; /* Change from fixed to absolute */
+    top: 27%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%;
+    height: 100%;
+    min-height: 8em;
+    padding: 1vw;
+    margin: 0;
+    background: rgba(255, 255, 255, 0.8);
+    text-align: center;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgb(0, 0, 0);
+    pointer-events: none; /* Makes it non-interactive */
+}
+
+#p4_overlay-text p {
+    margin: 0;
+    padding: 0;
+}
+
+#p4_title {
+    font-size: 1vw;
+    margin: 0;
+    line-height: 1vw;
+}
+
+#p4_subtitle {
+    font-size: 1vw;
+    margin: 0;
+    border-bottom: 1px solid black;
+    padding-bottom: 3px;
+    width: 100%;
+}
+
+#p4_subtitle2 {
+    font-size: 1vw;
+    margin-top: 15vw; 
+    border-bottom: 1px solid black;
+    width: 100%; 
+}
+
+#p4_text1 {
+    font-size: 2vw;
+    margin-top: 0vw; /* Marge au-dessus du paragraphe */
+    margin-bottom: 4vw; /* Marge en bas pour séparer du titre 3 */
+    column-count: 2; /* Séparer le paragraphe en 2 colonnes */
+    column-gap: 2vw; /* Espacement entre les colonnes */
+    height: auto; /* Allow content to determine height */
+    max-height: none; /* Remove max-height constraint */
+    overflow: visible; /* Let content flow naturally */
+    padding-right: 1vw; /* Space for scrollbar */
+    margin-bottom: 10vh; /* Space at bottom of text */
+}
+
+/* Add custom scrollbar styling */
+#p4_text1::-webkit-scrollbar {
+    width: 8px;
+}
+
+#p4_text1::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+#p4_text1::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+}
+
+/* Adjustments for different screen sizes */
+@media screen and (max-width: 768px) {
+    .fullscreen-text {
+        font-size: min(6vw, 6vh);
+        padding: 3vw;
+        line-height: 1.1;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .fullscreen-text {
+        font-size: min(4vw, 4vh);
+        padding: 5vw;
+        column-count: 2;
+        column-gap: 4vw;
+    }
+}
+
+@media screen and (min-width: 2000px) {
+    .fullscreen-text {
+        font-size: min(3.5vw, 3.5vh);
+        padding: 6vw;
+        column-count: 3;
+        column-gap: 5vw;
+    }
+}
+
+/* Add responsive adjustments */
+@media screen and (max-width: 768px) {
+    .fullscreen-text {
+        padding: 1rem;
+        font-size: clamp(0.8rem, 3vw, 1.2rem);
+    }
+}
+
+/* ----------------------------------------------------------- */
+/* ------------------------ Tableau 5 ------------------------ */
+/* ----------------------------------------------------------- */
+
+#page5 {
+    background-color: #4c0a0a;
+    height: 100vh;
+    width: 100%;
+    position: relative;
+}
+
+.char {
+    display: inline-block;
+    position: relative;
+    transition: transform 1s, opacity 1s;
+}
+
+.char.deconstruct {
+    transform: translate(var(--start-x), var(--start-y));
+    opacity: 0;
+}
+
+
