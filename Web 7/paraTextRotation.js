@@ -21,10 +21,9 @@ document.addEventListener('DOMContentLoaded', () => {
     function handleScroll() {
         requestAnimationFrame(() => {
             const chars = textElement.querySelectorAll('.rotatable-char');
-            const scrollPercent = textContainer.scrollTop / (textContainer.scrollHeight - textContainer.clientHeight);
             
             chars.forEach((char, index) => {
-                const rotation = scrollPercent * 360;
+                const rotation = Math.random() * 360;
                 gsap.to(char, {
                     duration: 0.1,
                     rotation: rotation,

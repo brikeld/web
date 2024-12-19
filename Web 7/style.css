@@ -176,7 +176,7 @@ body {
 #p2_text1 {
     font-size: 5.5vw;
     position: absolute;
-    top: 42%;
+    top: 34%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 60%;
@@ -196,11 +196,11 @@ body {
     font-family: 'AquilineTwo', 'HALTimezone', monospace;
     letter-spacing: 0.9vw;
     text-transform: uppercase;
-    line-height: 1.2;
+    line-height: 1;
     text-align: center;
     font-size: 2.5vw;
-    left: 39%;
-    top: 50%;
+    left: 45%;
+    top: 53%;
     transform: rotate(-90deg) translateY(-50%);
     transform-origin: left center;
     width: 60vh;
@@ -217,12 +217,12 @@ body {
     font-family: 'AquilineTwo', 'HALTimezone', monospace;
     letter-spacing: 0.9vw;
     text-transform: uppercase;
-    line-height: 1.2;
+    line-height: 1;
     text-align: center;
     font-size: 2.5vw;
-    left: 5%; /* Mirror of left: 41% from p2_text2 */
-    top: 16%;
-    transform: rotate(90deg) translateY(-50%);
+    left: 66%; 
+    bottom: 15%;
+    transform: rotate(-90deg) translateY(-50%);
     transform-origin: right center; /* Changed from left to right */
     width: 60vh;
     white-space: nowrap;
@@ -285,7 +285,7 @@ body {
 /* ------------------------ Tableau 3 ------------------------ */
 /* ----------------------------------------------------------- */
 #page3 {
-    background-color: #bababa;
+    background-color: #e1e4c8;
     height: 100vh;
     width: 100%; /* Changed from 100vw */
     display: flex;
@@ -710,7 +710,7 @@ body {
     line-height: 7vw;
     text-transform: uppercase;
     position: absolute; /* Change from fixed to absolute */
-    top: 27%;
+    top: 24.5%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 60%;
@@ -825,6 +825,8 @@ body {
     height: 100vh;
     width: 100%;
     position: relative;
+    background-image: url("../images/page5.png");
+    background-size: cover;
 }
 
 .char {
@@ -837,5 +839,11 @@ body {
     transform: translate(var(--start-x), var(--start-y));
     opacity: 0;
 }
+
+/* ----------------------------------------------------------- */
+/* ------------------------ Tableau 6 ------------------------ */
+/* ----------------------------------------------------------- */
+
+
 
 

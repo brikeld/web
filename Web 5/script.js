@@ -250,4 +250,12 @@ function startAnimation(svgDoc, index) {
 
 // Add any Page 4 specific functions here
 
+// text derriere page 1 
+// background disparait texte rmains 
+// svg remains 
+// then dissolve everything 
+
+
+//page 3 disparait plus lentement, arrive plus lentement 
+// regarde indesing, elements disparait, mise en page devient plus facile a comprendre 
 
