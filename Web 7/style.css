@@ -759,7 +759,7 @@ body {
     width: 100%; 
 }
 
-#p4_text1 {
+#p4_text1, #p4_text2 {
     font-size: 2vw;
     margin-top: 0vw; /* Marge au-dessus du paragraphe */
     margin-bottom: 4vw; /* Marge en bas pour séparer du titre 3 */
@@ -771,6 +771,18 @@ body {
     padding-right: 1vw; /* Space for scrollbar */
     margin-bottom: 10vh; /* Space at bottom of text */
 }
+
+#p4_text1{
+    background: linear-gradient(to right, #1b1b1b, #1b1b1b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* #p4_text2{
+    background: linear-gradient(to right, #00ff04, #00ff04);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+} */
 
 /* Add custom scrollbar styling */
 #p4_text1::-webkit-scrollbar {
