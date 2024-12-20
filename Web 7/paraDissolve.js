@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", function() {
     
     const getRandomStartPosition = () => {
         const angle = Math.random() * Math.PI * 2;
-        const distance = 30 + Math.random() * 500; // Increased distance for more dramatic effect
+        const distance = 30 + Math.random() * 5; 
         return {
             x: Math.cos(angle) * distance*2,
             y: Math.sin(angle) * distance*2,
@@ -46,24 +46,24 @@ document.addEventListener("DOMContentLoaded", function() {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 setTimeout(() => {
-                    // Handle text elements
+                    
                     const p3_text3 = document.getElementById("p3_text3");
                     const p3_text4 = document.getElementById("p3_text4");
                     
                     if (p3_text3) {
                         setTimeout(() => {
                             deconstructText(p3_text3);
-                        }, 5200); // Wait for initial animation to complete
+                        }, 6200); 
                     }
                     
                     if (p3_text4) {
                         setTimeout(() => {
                             deconstructText(p3_text4);
-                        }, 6000); // Wait for initial animation to complete
+                        }, 6500); // Wait for initial animation to complete
                     }
 
                     // Handle SVG text paths
-                    setTimeout(() => dissolveSVGText(), 5900);
+                    setTimeout(() => dissolveSVGText(), 6700);
                     
                     observer.disconnect();
                 }, 3000);

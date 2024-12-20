@@ -56,7 +56,7 @@ body {
 
 #page1 {
     /* overflow: hidden; */
-    background-color: rgb(195, 197, 36);
+    background-color: rgb(142, 145, 22);
     height: 100vh;
     width: 100%; /* Changed from 100vw */
     display: flex;
@@ -64,7 +64,7 @@ body {
     align-items: center;
     position: relative;
     background-image: url("../svg/01_Pink.svg");
-    z-index: 5; /* Higher than .p2_text-container */
+    z-index: 5;
 }
 
 .p1_rectangle {
@@ -138,13 +138,16 @@ body {
 
 
 #page2 {
-    background-color: #a4a4a4;
+    background-color: #ffffff;
     height: 100vh;
     width: 100%; /* Changed from 100vw */
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
+    background-image: url("../svg/01_Pink.svg");
+    background-size: cover;
+    
 }
 
 .squares-container {
@@ -174,7 +177,7 @@ body {
 }
 
 #p2_text1 {
-    font-size: 5.5vw;
+    font-size: 8.5vw;
     position: absolute;
     top: 34%;
     left: 50%;
@@ -193,14 +196,15 @@ body {
 
 #p2_text2 {
     position: absolute;
+    color: rgb(142,145,22);
     font-family: 'AquilineTwo', 'HALTimezone', monospace;
     letter-spacing: 0.9vw;
     text-transform: uppercase;
-    line-height: 1;
+    line-height: 2vw;
     text-align: center;
-    font-size: 2.5vw;
-    left: 45%;
-    top: 53%;
+    font-size: 2vw;
+    left: 35.5%;
+    top: 55%;
     transform: rotate(-90deg) translateY(-50%);
     transform-origin: left center;
     width: 60vh;
@@ -214,14 +218,15 @@ body {
 
 #p2_text3 {
     position: absolute;
+    color: rgb(142,145,22);
     font-family: 'AquilineTwo', 'HALTimezone', monospace;
     letter-spacing: 0.9vw;
     text-transform: uppercase;
-    line-height: 1;
+    line-height: 2vw;
     text-align: center;
-    font-size: 2.5vw;
-    left: 66%; 
-    bottom: 15%;
+    font-size: 2vw;
+    left: 65.5%; 
+    bottom: 29%;
     transform: rotate(-90deg) translateY(-50%);
     transform-origin: right center; /* Changed from left to right */
     width: 60vh;
@@ -285,7 +290,7 @@ body {
 /* ------------------------ Tableau 3 ------------------------ */
 /* ----------------------------------------------------------- */
 #page3 {
-    background-color: #e1e4c8;
+    background-color: #ffffff;
     height: 100vh;
     width: 100%; /* Changed from 100vw */
     display: flex;
@@ -715,7 +720,7 @@ body {
     transform: translate(-50%, -50%);
     width: 60%;
     height: 100%;
-    min-height: 8em;
+    min-height: 10em;
     padding: 1vw;
     margin: 0;
     background: rgba(255, 255, 255, 0.8);
