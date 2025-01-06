@@ -99,7 +99,7 @@ body {
     position: relative;
 }
 
-.p1_text-container {
+ .p1_text-container {
     margin-top: 21vw; /* Reduce top margin */
     margin-left: 1vw;
     position: relative;
@@ -137,7 +137,11 @@ body {
 .p1_text1, .p1_text1_stroke,
 .p1_text2, .p1_text2_stroke,
 .p1_numbers,
-.p1_text3, .p1_text3_stroke {
+#p1_text3{
+    position: relative;
+    font-family: 'Anthony', sans-serif;
+}
+.p1_text3_stroke {
     position: relative;
     font-family: 'Anthony', sans-serif;
 }
@@ -156,7 +160,12 @@ body {
     top: 30vh; /* Move up slightly */
 }
 
-.p1_text3, .p1_text3_stroke {
+#p1_text3  {
+    position: relative;
+    left: 0; /* Align with container */
+}
+.p1_text3_stroke
+{
     position: relative;
     left: 0; /* Align with container */
 }
@@ -210,7 +219,7 @@ body {
     z-index: 2;
 }
 
-.p1_text3, .p1_text3_goey {
+#p1_text3, #p1_text3_goey {
     font-size: 10vw;
     line-height: 8vw;
     position: absolute;
@@ -227,8 +236,8 @@ body {
     background-clip: text!important; /* Add standard property for better browser support */
 }
 
-.p1_text3_goey {
-    background: linear-gradient(to right, #ffffff, #0004ff)!important;
+#p1_text3_goey {
+    background: linear-gradient(to right, #80ff00, #0004ff)!important;
     -webkit-background-clip: text!important;
     -webkit-text-fill-color: transparent!important;
     
@@ -296,15 +305,43 @@ body {
     z-index: 10;
 }
 
-.p1_text6_stroke {
+#p1_text6_stroke {
     font-size: 4vw;
     position: absolute;
     top: 36vw;
     left: 2vw;
     color: transparent;
-    -webkit-text-stroke: 1vw rgb(254, 255, 42);
+    -webkit-text-stroke: 1vw rgb(9, 65, 91);
     mix-blend-mode: overlay;
     z-index: 5;
+    user-select: none;
+    transition: filter 0.5s ease, opacity 0.5s ease;
+}
+
+#p1_text6_stroke, #p1_text6_stroke_goey {
+    font-size: 4vw;
+    position: absolute;
+    top: 36vw;
+    left: 2vw;
+    color: transparent;
+    -webkit-text-stroke: 1vw rgb(72, 147, 61);
+    mix-blend-mode: overlay;
+    z-index: 5;
+    user-select: none;
+    transition: filter 0.5s ease, opacity 0.5s ease;
+}
+
+#p1_text6_stroke {
+    -webkit-text-stroke: 1vw rgb(0, 9, 178);
+    -webkit-background-clip: text!important;
+    -webkit-text-fill-color: transparent!important;
+    background-clip: text!important;
+}
+
+#p1_text6_stroke_goey {
+    background: linear-gradient(to right, #80ff00, #0004ff)!important;
+    -webkit-background-clip: text!important;
+    -webkit-text-fill-color: transparent!important;
 }
 
 .p1_text7 {

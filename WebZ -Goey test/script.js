@@ -6,6 +6,7 @@ let activeTimelines = [];
 let lastScrollPosition = window.pageYOffset;
 let svgAnimations = [];
 let isAnimating = false;  // Track animation state
+let elts = {}; // Make elts accessible here
 
 /* ----------------------------------------------------------- */
 /* ------------------ morph ---------------------------- */
@@ -13,15 +14,28 @@ let isAnimating = false;  // Track animation state
 
 document.addEventListener('DOMContentLoaded', () => {
     const observer = new MutationObserver((mutationsList, observer) => {
-        const elts = {
+        elts = {
             text1: document.getElementById("p1_text3"),
-            text2: document.getElementById("p1_text3_goey")
+            text2: document.getElementById("p1_text3_goey"),
+            text3: document.getElementById("p1_text6_stroke"),
+            text4: document.getElementById("p1_text6_stroke_goey")
         };
 
-        if (elts.text1 && elts.text2) {
+        const texts = [
+            "Yo",
+            "Alice",
+            "ça va wesh?",
+            "j'espère que oui", 
+            "moi je vibe la",
+            "Dr Strauss and Dr Nemur say it\ndont matter about the inkblots. I told them",
+            "CIAO COME STAI"
+        ];
+
+        if (elts.text1 && elts.text2 && elts.text3 && elts.text4) {
             // Elements found, stop observing and start the animation
             observer.disconnect();
             startAnimation(elts);
+            startText6Animation(elts, texts);
             console.log('Animation started with:', elts.text1, elts.text2); // Move console.log inside
         }
     });
@@ -59,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
             elts.text2.style.opacity = Math.sin(fraction * Math.PI);
 
             // Inverse effect for text1
-            elts.text1.style.filter = `blur(${Math.min(8 / ((1 - fraction) + 0.1) - 4, 100)}px)`;
+            elts.text1.style.filter = `blur(${Math.min(8 / ((1 - fraction) + 0.1) - 4, 1300)}px)`;
             elts.text1.style.opacity = Math.sin((1 - fraction) * Math.PI);
         }
 
@@ -73,9 +87,54 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         };
     }
-});
 
-console.log(elts.text1, elts.text2);
+    function startText6Animation(elts, texts) {
+        const ANIMATION_DURATION = 4000;
+        let startTime = null;
+        let animationFrame;
+        let lastFractionState = null; // Track last state for text change
+
+        function animate(currentTime) {
+            if (!startTime) startTime = currentTime;
+
+            let elapsed = (currentTime - startTime) % ANIMATION_DURATION;
+            let fraction = elapsed / ANIMATION_DURATION;
+
+            let smoothFraction = (Math.sin(fraction * Math.PI * 2) + 1) / 2;
+
+            // Log animation progress
+            console.log('Animation progress:', {
+                fraction: smoothFraction.toFixed(2),
+                text1Opacity: Math.sin((1 - fraction) * Math.PI).toFixed(2),
+                text2Opacity: Math.sin(fraction * Math.PI).toFixed(2)
+            });
+
+            // Track text changes
+            if (lastFractionState !== (fraction > 0.5)) {
+                lastFractionState = fraction > 0.5;
+                console.log('Text switched to:', lastFractionState ? texts[6] : texts[5]);
+            }
+
+            setMorphText6(smoothFraction);
+            animationFrame = requestAnimationFrame(animate);
+        }
+
+        function setMorphText6(fraction) {
+            elts.text4.style.filter = `blur(${Math.min(8 / (fraction + 0.1) - 4, 100)}px)`;
+            elts.text4.style.opacity = Math.sin(fraction * Math.PI);
+            
+            elts.text3.style.filter = `blur(${Math.min(8 / ((1 - fraction) + 0.1) - 4, 100)}px)`;
+            elts.text3.style.opacity = Math.sin((1 - fraction) * Math.PI);
+
+            elts.text3.textContent = fraction > 0.5 ? texts[6] : texts[5];
+            elts.text4.textContent = fraction > 0.5 ? texts[5] : texts[6];
+        }
+
+        requestAnimationFrame(animate);
+    }
+
+    console.log(elts.text1, elts.text2);
+});
 
 /* ----------------------------------------------------------- */
 /* ------------------ end morph ---------------------------- */
