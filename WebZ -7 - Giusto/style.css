@@ -1,0 +1,1088 @@
+/* Add at the top of your CSS file */
+* {
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Combine font-face declarations */
+@font-face {
+    font-family: 'BeautifulWorld';
+    src: url('fonts/Beautifulworldnbp-G0zq.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap; /* Improve font loading performance */
+}
+
+@font-face {
+    font-family: 'HALTimezoneTest';
+    src: url('./fonts/HALTimezoneTest-MonoRegular.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Anthony';
+    src: url('./fonts/Anthony.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* Optimize core styles */
+html, body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    position: relative;
+    max-width: 100%;
+}
+
+.snap-container {
+    scroll-snap-type: y mandatory; /* Change to mandatory for stricter snapping */
+    height: 100vh;
+    overflow-y: scroll;
+    max-width: 100vw;
+    -webkit-overflow-scrolling: touch; /* Improve mobile scrolling */
+    overscroll-behavior: contain;
+}
+
+.page {
+    scroll-snap-align: start;
+    min-height: 100vh; /* Changed from height to min-height */
+    width: 100%; /* Changed from 100vw */
+    position: relative;
+    overflow: hidden;
+    will-change: transform; /* Optimize animations */
+    box-sizing: border-box; /* Include padding in width calculation */
+    contain: layout size;
+}
+
+body {
+    font-family: 'HALTimezoneTest-MonoRegular', monospace;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    background: #fff;
+}
+
+/* ----------------------------------------------------------- */
+/* ------------------------ Tableau 1 ------------------------ */
+/* ----------------------------------------------------------- */
+
+
+/* ------------------ Position ------------------ */
+/* ---------------------------------------------- */
+
+#page1 {
+    min-height: 300vh; /* Reduced from 400vh */
+    width: 100%;
+    position: relative;
+    z-index: 5;
+    overflow-y: auto; /* Enable vertical scrolling */
+    scroll-snap-align: start; /* Ensure proper snapping */
+}
+
+.page1_section1 {
+    background-color: rgb(250,161,42);
+    min-height: 150vh; /* Reduced from 200vh */
+    width: 100%;
+    padding: 2vw;
+    position: relative;
+}
+
+.page1_section2 {
+    background-color: rgb(142,145,22); /* Green color for second section */
+    min-height: 150vh;
+    width: 100%;
+    padding: 2vw;
+    position: relative;
+}
+
+.p1_text-container {
+    margin-top: 21vw; /* Reduce top margin */
+    margin-left: 1vw;
+    position: relative;
+    width: 100%;
+    min-height: 150vh; /* Reduced from 200vh to match parent */
+    height: auto; /* Allow container to grow with content */
+    padding-bottom: 30vh; /* Reduced from 50vh */
+    padding-top: 0; /* Remove top padding */
+    max-width: 100vw;
+    overflow-x: hidden;
+    box-sizing: border-box;
+}
+
+.p1_mainTitle {
+    font-size: 20vw;
+    line-height: 14vw;
+    position: absolute;
+    color: transparent;
+    -webkit-text-stroke: 1.5vw rgb(255, 255, 255);
+    mix-blend-mode: overlay;
+    z-index: 5;
+}
+
+/* Hide scrollbar but keep functionality */
+#page1::-webkit-scrollbar {
+    display: none;
+}
+
+#page1 {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+/* Adjust positioning for page1 elements to work with scroll */
+.p1_text1, .p1_text1_stroke,
+.p1_text2, .p1_text2_stroke,
+.p1_numbers,
+.p1_text3, .p1_text3_stroke {
+    position: relative;
+    font-family: 'Anthony', sans-serif;
+}
+
+.p1_text2 {
+    position: relative;
+}
+
+.p1_text2_stroke {
+    position: relative;
+    left: 0; /* Align with main text */
+}
+
+.p1_numbers {
+    position: absolute;
+    top: 30vh; /* Move up slightly */
+}
+
+.p1_text3, .p1_text3_stroke {
+    position: relative;
+    left: 0; /* Align with container */
+}
+
+.p1_text1 {
+    font-size: 20vw;
+    line-height: 14vw;
+    position: relative;
+    color: rgb(248,37,255);
+    z-index: 10;
+}
+
+.p1_text1_stroke {
+    font-size: 20vw;
+    line-height: 14vw;
+    position: absolute;
+    color: transparent;
+    -webkit-text-stroke: 1.5vw rgb(254, 255, 42);
+    mix-blend-mode: overlay;
+    top: 0vh; 
+    z-index: 5;
+}
+
+.p1_text2 {  
+    font-size: 2.4vw;
+    color: transparent;
+    position: relative;
+    top: 8vw;
+    color: rgb(185, 0, 192);
+    z-index: 10;
+}
+
+.p1_text2_stroke {
+    font-size: 2.4vw;
+    position: absolute;
+    top: 50vw;
+    color: transparent;
+    -webkit-text-stroke: 2vw rgb(254, 255, 42);
+    mix-blend-mode: overlay;
+    z-index: 5;
+}
+
+.p1_numbers {
+    font-size: 20vw;
+    line-height: 40vw;
+    position: absolute;
+    top: 8vw;
+    left: 60vw;
+    -webkit-text-stroke: 2vw rgb(254, 255, 42);
+    mix-blend-mode: multiply;
+    z-index: 2;
+}
+
+.p1_text3 {
+    font-size: 10vw;
+    line-height: 8vw;
+    position: absolute;
+    top: 2vw;
+    left: 2vw;
+    color: rgb(250,161,42);
+    z-index: 1;
+}
+
+.p1_text3_stroke {
+    font-size: 10vw;
+    line-height: 8vw;
+    position: absolute;
+    top: 2vw;
+    left: 2vw;
+    color: transparent;
+    -webkit-text-stroke: 1vw rgb(193,145,255);
+    z-index: 0;
+}
+
+/* Page1 Section2 Additional Design */
+.p1_text4 {
+    font-size: 20vw;
+    line-height: 14vw;
+    position: relative;
+    color: rgb(114,0,255);
+    z-index: 10;
+}
+
+.p1_text4_stroke {
+    font-size: 20vw;
+    line-height: 14vw;
+    position: absolute;
+    top: 2vw;
+    left: 2vw;
+    color: transparent;
+    -webkit-text-stroke: 1.5vw rgb(243, 255, 22);
+    mix-blend-mode: overlay;
+    z-index: 5;
+}
+
+.p1_text5 {
+    font-size: 20vw;
+    line-height: 14vw;
+    position: relative;
+    top: 2vw;
+    left: 20vw;
+    color: rgb(250,161,42);
+    z-index: 10;
+}
+
+.p1_text5_stroke {
+    font-size: 20vw;
+    line-height: 14vw;
+    position: absolute;
+    top: 2vw;
+    left: 20vw;
+    color: transparent;
+    -webkit-text-stroke: 1.5vw rgb(243, 255, 22);
+    mix-blend-mode: overlay;
+    z-index: 5;
+}
+
+.p1_text6 {
+    font-size: 4vw;
+    position: relative;
+    top: 6vw;
+    color: rgb(114,0,255);
+    z-index: 10;
+}
+
+.p1_text6_stroke {
+    font-size: 4vw;
+    position: absolute;
+    top: 36vw;
+    left: 2vw;
+    color: transparent;
+    -webkit-text-stroke: 1vw rgb(254, 255, 42);
+    mix-blend-mode: overlay;
+    z-index: 5;
+}
+
+.p1_text7 {
+    font-size: 20vw;
+    line-height: 10vw;
+    position: absolute;
+    top: 2vw;
+    left: 2vw;
+    color: rgb(250,161,42);
+    z-index: 1;
+}
+
+.p1_text7_stroke {
+    font-size: 20vw;
+    line-height: 10vw;
+    position: absolute;
+    top: 2vw;
+    left: 2vw;
+    color: transparent;
+    -webkit-text-stroke: 0.5vw #c191ff;
+    z-index: 1;
+}
+
+.p1_text4, .p1_text4_stroke,
+.p1_text5, .p1_text5_stroke,
+.p1_text6, .p1_text6_stroke,
+.p1_text7, .p1_text7_stroke {
+    font-family: 'Anthony', sans-serif;
+}
+
+#p1_title {
+    font-family: 'HALTimezoneTest';
+    src: url('./fonts/HALTimezoneTest-MonoRegular.otf') format('opentype');
+    position: absolute;
+    font-size: 1vw;
+    margin: 0;
+    line-height: 1vw;
+    width: 100%;
+    top: 2vw;
+    left: 3vw;
+    z-index: 15;
+}
+
+#p1_subtitle {
+    font-family: 'HALTimezoneTest';
+    src: url('./fonts/HALTimezoneTest-MonoRegular.otf') format('opentype');
+    position: absolute;
+    font-size: 1vw;
+    margin: 2;
+    border-bottom: 1px solid black;
+    padding-bottom: 3px;
+    width: 90%;
+    top: 2.5vw;
+    left: 3vw;
+    z-index: 15;
+}
+
+#p1_subtitle2 {
+    font-family: 'HALTimezoneTest';
+    src: url('./fonts/HALTimezoneTest-MonoRegular.otf') format('opentype');
+    position: absolute;
+    font-size: 1vw;
+    margin: 0;
+    border-bottom: 1px solid black;
+    width: 90%;
+    top: 20vw;
+    left: 3vw;
+    z-index: 15;
+}
+
+#p1_mainTitle, #p1_mainTitle_stroke {
+    position: absolute;
+    top: 2%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    text-align: center;
+    font-family: 'Anthony', sans-serif;
+    user-select: none;
+    transition: color 0.5s ease;
+}
+
+#p1_mainTitle {
+    font-size: 10vw;
+    line-height: 14vw;
+    z-index: 5;
+    background: linear-gradient(to right, #c191ff, #c191ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+#p1_mainTitle_stroke {
+    font-size: 10vw;
+    line-height: 14vw;
+    color: transparent;
+    z-index: 4;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    -webkit-text-stroke: 1vw rgb(221, 255, 0);
+}
+
+/* ----------------------------------------------------------- */
+/* ------------------------ Tableau 2 ------------------------ */
+/* ----------------------------------------------------------- */
+
+#page2 {
+    font-family: 'HALTimezoneTest';
+    background-color: rgb(226, 227, 181);
+    height: 100vh;
+    width: 100%;
+    display: block;
+    position: relative;
+    padding: 2vw;
+    overflow: hidden;
+}
+
+/* Page 2 Title Elements - Keep these similar to page 4 */
+#p2_title, #p2_subtitle, #p2_subtitle2 {
+    position: absolute; /* Change from fixed to absolute */
+    left: 4vw;
+    font-family: 'HALTimezoneTest';
+    font-size: 1vw;
+    width: 90%;
+    z-index: 2; /* Ensure they stay above scrolling content */
+}
+
+#p2_text1 {
+    font-family: 'AquilineTwo', 'HALTimezone', monospace !important;
+    font-size: 4vw !important;
+    color: rgb(142,145,22) !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.2em !important;
+    line-height: 1.5 !important;
+    text-align: center !important;
+    width: 80% !important; /* Slightly narrower than container */
+    margin: 0vw auto 0 auto !important; /* Center horizontally and add top margin */
+    position: relative !important;
+    z-index: 3;
+}
+
+#p2_text2 {
+    position: absolute;
+    font-family: 'AquilineTwo', 'HALTimezone', monospace !important;
+    font-size: 2.3vw !important;
+    letter-spacing: 0.35em !important;
+    transform-origin: left top;
+    width: 80vh;
+    top: 21vw; 
+    left: 3.5vw;
+    text-align: left;
+    line-height: 1;
+    white-space: nowrap;
+    z-index: 2;
+}
+
+
+
+#p2_text3 {
+    position: absolute;
+    font-family: 'AquilineTwo', 'HALTimezone', monospace !important;
+    font-size: 2.3vw !important;
+    letter-spacing: 0.35em !important;
+    transform-origin: left top;
+    width: 80vh;
+    top: 21vw; 
+    left: 80.5vw;
+    text-align: left;
+    line-height: 1;
+    white-space: nowrap;
+    z-index: 2;
+    transform: scale(-1, 1)
+}
+
+.p2_text-container::-webkit-scrollbar {
+    display: none;
+}
+
+/* Responsive adjustments for page 2 text */
+@media screen and (max-width: 768px) {
+    .p2_text-container {
+        width: 95%;
+        height: 90vh;
+    }
+    
+    #p2_text2, #p2_text3 {
+        font-size: clamp(0.6rem, 3vw, 1.2rem);
+        width: 50vh;
+    }
+}
+
+@media screen and (min-width: 2000px) {
+    .p2_text-container {
+        max-width: 1800px;
+    }
+    
+    #p2_text2, #p2_text3 {
+        font-size: clamp(1.2rem, 1.5vw, 2rem);
+    }
+}
+
+/* Update page 2 title elements to match page 4 exactly */
+#p2_title {
+    position: absolute;
+    font-size: 1vw;
+    margin: 0;
+    line-height: 1vw;
+    width: 100%;
+    top: 2vw;
+    left: 3vw; 
+    font-family: 'AquilineTwo', 'HALTimezone', monospace !important; /* Use custom font */
+}
+
+#p2_subtitle {
+    position: absolute;
+    font-size: 1vw;
+    margin: 0;
+    border-bottom: 1px solid black;
+    padding-bottom: 3px;
+    width: 90%;
+    top: 2.5vw;
+    left: 3vw; 
+    font-family: 'AquilineTwo', 'HALTimezone', monospace !important; /* Use custom font */
+}
+
+#p2_mainTitle {
+    position: absolute;
+    top: -7.5vw;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'AquilineTwo', 'HALTimezone', monospace;
+    font-size: 7.5vw;
+    width: 100%;
+    text-align: center;
+    color: rgb(0, 0, 0);
+    z-index: 2;
+    font-family: 'AquilineTwo', 'HALTimezone', monospace !important; /* Use custom font */
+}
+
+#p2_subtitle2 {
+    position: absolute;
+    font-size: 1vw;
+    margin: 0;
+    border-bottom: 1px solid black;
+    width: 90%;
+    top: 20vw; 
+    left: 3vw; 
+    font-family: 'AquilineTwo', 'HALTimezone', monospace !important; /* Use custom font */
+}
+
+
+
+.p2_text-container {
+    font-family: 'HALTimezoneTest';
+    height: 100vh;
+    max-height: 100vh;
+    width: 90%;
+    margin: 0 auto;
+    padding: 22vw;
+    overflow-y: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    position: relative;
+    z-index: 1;
+    max-width: 100vw;
+    overflow-x: hidden;
+    box-sizing: border-box;
+}
+
+/* ----------------------------------------------------------- */
+/* ------------------------ Tableau 3 ------------------------ */
+/* ----------------------------------------------------------- */
+#page3 {
+    background-color: #e1e4c8;
+    height: 300vh;
+    width: 100%;
+    position: relative;
+    padding: 2vw;
+    overflow-y: visible; /* Change from auto to visible */
+    -ms-overflow-style: none; /* Hide scrollbar IE/Edge */
+    scrollbar-width: none; /* Hide scrollbar Firefox */
+}
+
+/* Hide webkit scrollbar */
+#page3::-webkit-scrollbar {
+    display: none;
+}
+
+.p3_text-container {
+    font-family: 'HALTimezoneTest';
+    min-height: 100vh; /* Change from fixed height */
+    width: 90%;
+    margin: 0 auto;
+    padding: 2vw;
+    position: relative;
+    z-index: 1;
+    max-width: 100vw;
+    box-sizing: border-box;
+    padding-bottom: 20vh; /* Add space at bottom for content */
+    overflow: visible; /* Change from auto to visible */
+}
+
+/* Update positioning for SVG container */
+.p3_black-SVG {
+    position: fixed; /* Change to fixed */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 2;
+    pointer-events: none; /* Allow scrolling through SVGs */
+}
+
+
+
+/* Adjust other text elements to use fixed positioning */
+#p3_text3, #p3_text4 {
+    position: fixed;
+    /* ...rest of existing styles... */
+}
+
+#p3_title {
+    font-size: 1vw;
+    line-height: 1vw;
+    position: absolute;
+    top: 2vw;
+    left: 3vw;
+    z-index: 15;
+}
+
+#p3_subtitle {
+    font-size: 1vw;
+    margin: 0;
+    border-bottom: 1px solid black;
+    padding-bottom: 3px;
+    width: 90%;
+    position: absolute;
+    top: 4vw;
+    left: 3vw;
+    z-index: 15;
+}
+
+#p3_subtitle2 {
+    font-size: 1vw;
+    margin: 0;
+    border-bottom: 1px solid black;
+    width: 90%;
+    position: absolute;
+    top: 20vw;
+    left: 3vw;
+    z-index: 15;
+}
+
+
+
+#p3_text1 {
+    font-size: 3vw;
+    position: absolute; /* Ensure absolute positioning */
+    top: 191vh;  /* Changed from 190vh to be more visible */
+    left: 10vw;
+    color: #000000;
+    -webkit-text-stroke: none;
+    background: none;
+    -webkit-text-fill-color: unset;
+    z-index: 5;
+    transform: none; /* Reset any transforms */
+    margin: 0; /* Reset margins */
+    padding: 0; /* Reset padding */
+    width: auto; /* Let content determine width */
+    height: auto; /* Let content determine height */
+}
+
+#p3_text2 {
+    font-size:20rem !important; /* Keep this */
+    top: 48vh!important; /* Adjust this to match the working version */
+    left: 30vw!important; /* Adjust this to match the working version */
+    width: 100%!important;
+    color: #000000;
+    z-index: 4!important;
+    position: absolute!important;
+    visibility: visible!important;
+    will-change: opacity, transform!important;
+    transition: opacity 1.5s ease!important;
+}
+#p3_text2 .char {
+    position: relative;
+    display: inline; /* Change from inline-block to inline */
+    opacity: 0;
+    visibility: visible;
+    animation: flyIn 1.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+
+@keyframes appear {
+    0% {
+        opacity: 0;
+        transform: translate(var(--start-x), var(--start-y));
+    }
+    100% {
+        opacity: 1;
+        transform: translate(0, 0);
+    }
+}
+
+#p3_text3 {
+    font-size: calc(1.5vw + 0.5rem);
+    position: absolute;
+    top: 130vh;
+    left: 3vw;
+    width: auto;
+    transform: rotate(-90deg);
+    transform-origin: top left;
+    text-align: left;
+    word-spacing: calc(0.3vw + 0.1rem);
+    line-height: 1.1;
+}
+
+#p3_text4 {
+    font-size: calc(2.5vw + 0.5rem);
+    position: absolute;
+    top: 150vh;
+    left: 2vw;
+    width: 100%;
+    /* transform: rotate(-90deg); */
+    transform-origin: top left;
+    text-align: left;
+    word-spacing: calc(0.3vw + 0.1rem);
+    line-height: 1.1;
+}
+
+.p3_black-SVG {
+    position: relative;
+    z-index: 2;
+}
+
+#p3_I, #p3_I2, #p3_I3, #p3_I4 {
+    position: absolute;
+    rotate: 90deg;
+    z-index: 3;
+}
+
+
+
+#p3_I { left: 4vw; top: 31vh; width: calc(10vw + 2rem); }
+#p3_I2 { left: 45vw; top: 15vh; width: calc(15vw + 2rem); }
+#p3_I3 { left: 84vw; top: 3vh; width: calc(9vw + 2rem); }
+#p3_I4 { left: 4vw; top: 95vh; width: calc(10vw + 2rem); rotate : 180deg; }
+
+.animations-container {
+    position: absolute;
+    top: 80%;
+    left: 50%;
+    width: 100%;
+    height: 100vh;
+    z-index: 3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+}
+
+.animation-svg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0.8;
+}
+
+#anim1 { z-index: 1; }
+#anim2 { z-index: 2; }
+#anim3 { z-index: 3; }
+
+#p3_text5 {
+    font-size: calc(5vw + 16rem) !important;
+    position: absolute;
+    left: calc(14vw + 2rem);
+    top: 50vh;
+    z-index: 4;
+}
+
+#p3_text6 {
+    font-size: calc(5vw + 2rem);
+    position: absolute;
+    left: 10vw;
+    top: 150vh;
+    z-index: 4;
+}
+
+#p3_text7 {
+    font-size: calc(5vw + 30rem);
+    position: absolute;
+    left: 65vw;
+    top: 110vh;
+    z-index: 4;
+}
+
+#p3_text8 {
+    font-size: calc(3vw + 1rem) !important;
+    position: absolute;
+    top: 191vh;
+    left: 68vw;
+    text-align: left;
+    line-height: 1.2;
+    z-index: 4;
+    letter-spacing: 0; /* Add consistent letter spacing */
+    white-space: pre-wrap; /* Preserve whitespace and wrapping */
+    text-align-last: left; /* Ensure last line aligns right */
+    padding-left: 2vw; /* Add padding to prevent text from touching edge */
+    font-family: 'HALTimezoneTest'; /* Ensure consistent font */
+    margin: 0; /* Remove any default margins */
+}
+    #p3_text8 {
+        font-size: calc(1.5vw + 0.4rem);
+        bottom: 5vh;
+    }
+
+
+    #p3_text8 {
+        font-size: calc(2.5vw + 0.6rem);
+    }
+
+    #p3_text9 {
+        font-size: calc(2.5vw + 5.6rem);
+        position: absolute;
+        top: 220vh;
+        left: 10vw;
+        width: 50%;
+        transform-origin: top left;
+        text-align: left;
+        word-spacing: calc(0.3vw + 0.1rem);
+        line-height: 1.1;
+    }
+
+    #p3_text10 {
+        font-size: calc(2.5vw + 15.6rem);
+        position: absolute;
+        top: 170vh;
+        left: 49vw;
+        width: 50%;
+        transform-origin: top left;
+        text-align: left;
+        word-spacing: calc(0.3vw + 0.1rem);
+        line-height: 1.1;
+    }
+
+/* Update animation styles for all page 3 text elements */
+#p3_text1, #p3_text2, #p3_text3, #p3_text4, #p3_text5,
+#p3_text6, #p3_text7, #p3_text8, #p3_text9, #p3_text10 {
+    opacity: 0;
+    visibility: hidden;
+}
+
+#p3_text1 .char,
+#p3_text2 .char,
+#p3_text3 .char,
+#p3_text4 .char,
+#p3_text5 .char,
+#p3_text6 .char,
+#p3_text7 .char,
+#p3_text8 .char,
+#p3_text9 .char,
+#p3_text10 .char {
+    position: relative;
+    display: inline;
+    opacity: 0;
+    visibility: visible;
+    animation: flyIn 1.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* Add specific delays for each text element */
+#p3_text1 .char { animation-delay: calc(var(--char-index) * 0.05s); }
+#p3_text2 .char { animation-delay: calc(var(--char-index) * 0.05s + 0.1s); }
+#p3_text3 .char { animation-delay: calc(var(--char-index) * 0.05s + 0.2s); }
+#p3_text4 .char { animation-delay: calc(var(--char-index) * 0.05s + 0.3s); }
+#p3_text5 .char { animation-delay: calc(var(--char-index) * 0.05s + 0.4s); }
+#p3_text6 .char { animation-delay: calc(var(--char-index) * 0.05s + 0.5s); }
+#p3_text7 .char { animation-delay: calc(var(--char-index) * 0.05s + 0.6s); }
+#p3_text8 .char { animation-delay: calc(var(--char-index) * 0.05s + 0.7s); }
+#p3_text9 .char { animation-delay: calc(var(--char-index) * 0.05s + 0.8s); }
+#p3_text10 .char { animation-delay: calc(var(--char-index) * 0.05s + 0.9s); }
+
+/* ----------------------------------------------------------- */
+/* ------------------------ Tableau 4 ------------------------ */
+/* ----------------------------------------------------------- */
+
+#page4 {
+    font-family: 'HALTimezoneTest';
+    src: url('./fonts/HALTimezoneTest-MonoRegular.otf') format('opentype');
+    background-color: #ffffff;
+    height: 100vh;
+    width: 100%; /* Changed from 100vw */
+    display: block; /* Change from flex to block */
+    position: relative;
+    padding: 2vw; /* Add some padding */
+    overflow: hidden; /* Contains the scrolling content */
+}
+
+.p4_text-container {
+    font-family: 'HALTimezoneTest';
+    src: url('./fonts/HALTimezoneTest-MonoRegular.otf') format('opentype');
+    height: 100vh;
+    max-height: 100vh;
+    width: 90%;
+    margin: 0 auto;
+    padding: 2vw;
+    overflow-y: auto; /* Enable vertical scrolling */
+    -ms-overflow-style: none; /* Hide scrollbar for IE/Edge */
+    scrollbar-width: none; /* Hide scrollbar for Firefox */
+    position: relative;
+    z-index: 1; /* Below overlay */
+    max-width: 100vw;
+    overflow-x: hidden;
+    box-sizing: border-box;
+    contain: content; /* Improve rendering performance */
+}
+
+/* Hide webkit scrollbar but keep functionality */
+.p4_text-container::-webkit-scrollbar {
+    display: none;
+}
+
+#p4_overlay-text {
+    font-size: 9vw;
+    line-height: 7vw;
+    text-transform: uppercase;
+    position: absolute; /* Change from fixed to absolute */
+    top: 24.5%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%;
+    height: 100%;
+    min-height: 8em;
+    padding: 1vw;
+    margin: 0;
+    background: rgba(255, 255, 255, 0.8);
+    text-align: center;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgb(0, 0, 0);
+    pointer-events: none; /* Makes it non-interactive */
+}
+
+#p4_overlay-text p {
+    margin: 0;
+    padding: 0;
+}
+
+#p4_title {
+    font-size: 1vw;
+    margin: 0;
+    line-height: 1vw;
+}
+
+#p4_subtitle {
+    font-size: 1vw;
+    margin: 0;
+    border-bottom: 1px solid black;
+    padding-bottom: 3px;
+    width: 100%;
+}
+
+#p4_subtitle2 {
+    font-size: 1vw;
+    margin-top: 15vw; 
+    border-bottom: 1px solid black;
+    width: 100%; 
+}
+
+#p4_text1 {
+    font-size: 2vw;
+    margin-top: 0vw; /* Marge au-dessus du paragraphe */
+    margin-bottom: 4vw; /* Marge en bas pour séparer du titre 3 */
+    column-count: 2; /* Séparer le paragraphe en 2 colonnes */
+    column-gap: 2vw; /* Espacement entre les colonnes */
+    height: auto; /* Allow content to determine height */
+    max-height: none; /* Remove max-height constraint */
+    overflow: visible; /* Let content flow naturally */
+    padding-right: 1vw; /* Space for scrollbar */
+    margin-bottom: 10vh; /* Space at bottom of text */
+}
+
+/* Add custom scrollbar styling */
+#p4_text1::-webkit-scrollbar {
+    width: 8px;
+}
+
+#p4_text1::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+#p4_text1::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+}
+
+
+
+/* ----------------------------------------------------------- */
+/* ------------------------ Tableau 5 ------------------------ */
+/* ----------------------------------------------------------- */
+
+#page5 {
+    height: 100vh;
+    width: 100%;
+    position: relative;
+    background-image: url("../images/page5.png");
+    background-size: cover;
+}
+/* ----------------------------------------------------------- */
+/* ------------------------ Tableau 6 ------------------------ */
+/* ----------------------------------------------------------- */
+
+#page6 {
+    background-color: #ffffff;
+    height: 100vh;
+    width: 100%;
+    position: relative;
+    background-image: url("../images/page6.png");
+    background-size: cover;
+}
+
+@keyframes dissolveAway {
+    0% {
+        transform: translate(0, 0) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(var(--start-x), var(--start-y)) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* Adjustments for different screen sizes */
+@media screen and (max-width: 768px) {
+    .fullscreen-text {
+        font-size: min(6vw, 6vh);
+        padding: 3vw;
+        line-height: 1.1;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .fullscreen-text {
+        font-size: min(4vw, 4vh);
+        padding: 5vw;
+        column-count: 2;
+        column-gap: 4vw;
+    }
+}
+
+@media screen and (min-width: 2000px) {
+    .fullscreen-text {
+        font-size: min(3.5vw, 3.5vh);
+        padding: 6vw;
+        column-count: 3;
+        column-gap: 5vw;
+    }
+}
+
+/* Add responsive adjustments */
+@media screen and (max-width: 768px) {
+    .fullscreen-text {
+        padding: 1rem;
+        font-size: clamp(0.8rem, 3vw, 1.2rem);
+    }
+}
+
+.rotatable-char {
+    display: inline-block;
+    transform-origin: center;
+    transition: transform 0.2s ease-out;
+    letter-spacing: inherit;
+    white-space: pre;
+}
+
+#p2_text2, #p2_text3 {
+    white-space: pre-wrap !important; /* Changed from pre-line */
+    line-height: 1; /* Adjust line height for better readability */
+}
+
+[class*='_text'] {
+    max-width: 100vw;
+    box-sizing: border-box;
+    transform: translateZ(0); /* Hardware acceleration */
+    backface-visibility: hidden;
+    perspective: 1000px;
+    will-change: transform;
+}
+
+
+
+
