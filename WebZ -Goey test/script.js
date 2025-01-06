@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
             "j'espère que oui", 
             "moi je vibe la",
             "Dr Strauss and Dr Nemur say it\ndont matter about the inkblots. I told them",
-            "CIAO COME STAI"
+            "Charlie stop kidding around and\nbe serious for once, they always said that"
         ];
 
         if (elts.text1 && elts.text2 && elts.text3 && elts.text4) {
@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
     observer.observe(document.body, { childList: true, subtree: true });
 
     function startAnimation(elts) {
-        const ANIMATION_DURATION = 4000; // Reduced duration for smoother animation
+        const ANIMATION_DURATION = 4000; 
         let startTime = null;
         let animationFrame;
 
@@ -68,19 +68,15 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         function setMorph(fraction) {
-            // Smooth blur transition
             elts.text2.style.filter = `blur(${Math.min(8 / (fraction + 0.1) - 4, 100)}px)`;
             elts.text2.style.opacity = Math.sin(fraction * Math.PI);
 
-            // Inverse effect for text1
             elts.text1.style.filter = `blur(${Math.min(8 / ((1 - fraction) + 0.1) - 4, 1300)}px)`;
             elts.text1.style.opacity = Math.sin((1 - fraction) * Math.PI);
         }
 
-        // Start the animation
         requestAnimationFrame(animate);
 
-        // Cleanup function to cancel animation when needed
         return () => {
             if (animationFrame) {
                 cancelAnimationFrame(animationFrame);
@@ -132,6 +128,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
         requestAnimationFrame(animate);
     }
+
+    function animateStrokeGooey() {
+        const strokeEl = document.getElementById('p1_text6_stroke');
+        const goeyEl = document.getElementById('p1_text6_stroke_goey');
+        let startTime = null;
+        const duration = 10000;
+      
+        function loop(timestamp) {
+          if (!startTime) startTime = timestamp;
+          let elapsed = (timestamp - startTime) % duration;
+          let fraction = elapsed / duration;
+      
+          // For one element
+          goeyEl.style.filter = `blur(${Math.min(8 / fraction - 8, 100)}px) url(#gooey)`;
+          goeyEl.style.opacity = `${Math.pow(fraction, 0.4) * 100}%`;
+      
+          // For the other, invert fraction
+          fraction = 1 - fraction;
+          strokeEl.style.filter = `blur(${Math.min(8 / fraction - 8, 100)}px) url(#gooey)`;
+          strokeEl.style.opacity = `${Math.pow(fraction, 0.4) * 100}%`;
+      
+          requestAnimationFrame(loop);
+        }
+        requestAnimationFrame(loop);
+    }
+
+    animateStrokeGooey();
 
     console.log(elts.text1, elts.text2);
 });
