@@ -31,9 +31,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     observer.observe(document.body, { childList: true, subtree: true });
 
-    // Start observing the document body for changes
-    observer.observe(document.body, { childList: true, subtree: true });
-
     function startAnimation(elts) {
         const ANIMATION_DURATION = 4000; 
         let startTime = null;
@@ -57,11 +54,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         function setMorph(fraction) {
-            elts.text2.style.filter = `blur(${Math.min(8 / (fraction + 0.1) - 4, 100)}px)`;
-            elts.text2.style.opacity = Math.sin(fraction * Math.PI);
+            // Apply the same effect to #p1_text3 and #p1_text3_goey
+            elts.text2.style.filter = `blur(${Math.min(8 / (fraction + 0.1) - 4, 100)}px) url(#gooey)`;
+            elts.text2.style.opacity = `${Math.pow(fraction, 0.4) * 100}%`;
 
-            elts.text1.style.filter = `blur(${Math.min(8 / ((1 - fraction) + 0.1) - 4, 1300)}px)`;
-            elts.text1.style.opacity = Math.sin((1 - fraction) * Math.PI);
+            elts.text1.style.filter = `blur(${Math.min(8 / ((1 - fraction) + 0.1) - 4, 100)}px) url(#gooey)`;
+            elts.text1.style.opacity = `${Math.pow(1 - fraction, 0.4) * 100}%`;
         }
 
         requestAnimationFrame(animate);
