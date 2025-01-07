@@ -143,14 +143,6 @@
                 <p>Retracted Article</p>
             </div>
         </section>
-
-                        <!-- PAGE 5  -->
-
-        <section class="page" id="page5">
-        </section>
-                <!-- PAGE 6  -->
-        <section class="page" id="page6">
-        </section>
     </main>
     
     <svg id="filters">
@@ -158,10 +150,10 @@
             <filter id="threshold">
                 <feColorMatrix in="SourceGraphic"
                     type="matrix"
-                    values="1.5 0 0 0 0
-                            0 1.5 0 0 0
-                            0 0 1.5 0 0
-                            0 0 0 1 0" />
+                    values="1.5 0 40 50 0
+                            0 1.5 0 4 0
+                            10 20 1.5 0 0
+                            0 30 0 1 150" />
             </filter>
 
             <filter id="gooey">
@@ -180,6 +172,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js"></script>
     <script src="paraCreation.js"></script>
     <script src="script.js"></script>
+    <script src="page4SVGScroll.js"></script>
     <script src="paraTextRotation.js"></script>
     <script>
         // Ensure GSAP is loaded before starting animations

@@ -336,12 +336,14 @@ body {
 #p1_text6_stroke {
     -webkit-text-stroke: 1vw rgb(72, 147, 61);
     -webkit-background-clip: text!important;
+    -webkit-text-fill-color: transparent!important;
     background-clip: text!important;
 }
 
 #p1_text6_stroke_goey {
     -webkit-text-stroke: 1vw rgb(255, 0, 0);
     -webkit-background-clip: text!important;
+    -webkit-text-fill-color: transparent!important;
     background-clip: text!important;
 }
 
@@ -1133,6 +1135,35 @@ body {
     backface-visibility: hidden;
     perspective: 1000px;
     will-change: transform;
+}
+
+.morph-container {
+    position: relative;
+    width: 100%;
+    height: auto;
+    pointer-events: none;
+}
+
+#p1_text6_stroke, #p1_text6_stroke_goey {
+    position: absolute;
+    top: 36vw;
+    left: 2vw;
+    font-size: 4vw;
+    pointer-events: none;
+    z-index: 5;
+}
+
+#p1_text6_stroke {
+    -webkit-text-stroke: 1vw rgb(72, 147, 61);
+    -webkit-text-fill-color: transparent;
+    mix-blend-mode: overlay;
+}
+
+#p1_text6_stroke_goey {
+    -webkit-text-stroke: 1vw rgb(255, 0, 0);
+    -webkit-text-fill-color: transparent;
+    mix-blend-mode: overlay;
+    filter: url(#gooey);
 }
 
 
