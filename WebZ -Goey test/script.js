@@ -74,28 +74,38 @@ document.addEventListener('DOMContentLoaded', () => {
     function animateStrokeGooey() {
         const strokeEl = document.getElementById('p1_text6_stroke');
         const goeyEl = document.getElementById('p1_text6_stroke_goey');
+        const strokeEl2 = document.getElementById('p1_text3_stroke');
+        const goeyEl2 = document.getElementById('p1_text3_stroke_goey');
         let startTime = null;
         const duration = 10000;
-      
+    
         function loop(timestamp) {
-          if (!startTime) startTime = timestamp;
-          let elapsed = (timestamp - startTime) % duration;
-          let fraction = elapsed / duration;
-      
-          // For one element
-          goeyEl.style.filter = `blur(${Math.min(8 / fraction - 8, 100)}px) url(#gooey)`;
-          goeyEl.style.opacity = `${Math.pow(fraction, 0.4) * 100}%`;
-      
-          // For the other, invert fraction
-          fraction = 1 - fraction;
-          strokeEl.style.filter = `blur(${Math.min(8 / fraction - 8, 100)}px) url(#gooey)`;
-          strokeEl.style.opacity = `${Math.pow(fraction, 0.4) * 100}%`;
-      
-          requestAnimationFrame(loop);
+            if (!startTime) startTime = timestamp;
+            let elapsed = (timestamp - startTime) % duration;
+            let fraction = elapsed / duration;
+    
+            // For one element
+            goeyEl.style.filter = `blur(${Math.min(8 / fraction - 8, 100)}px) url(#gooey)`;
+            goeyEl.style.opacity = `${Math.pow(fraction, 0.4) * 100}%`;
+    
+            // For the other, invert fraction
+            fraction = 1 - fraction;
+            strokeEl.style.filter = `blur(${Math.min(8 / fraction - 8, 100)}px) url(#gooey)`;
+            strokeEl.style.opacity = `${Math.pow(fraction, 0.4) * 100}%`;
+    
+            // For the second set of elements
+            goeyEl2.style.filter = `blur(${Math.min(8 / fraction - 8, 100)}px) url(#gooey)`;
+            goeyEl2.style.opacity = `${Math.pow(fraction, 0.4) * 100}%`;
+    
+            fraction = 1 - fraction;
+            strokeEl2.style.filter = `blur(${Math.min(8 / fraction - 8, 100)}px) url(#gooey)`;
+            strokeEl2.style.opacity = `${Math.pow(fraction, 0.4) * 100}%`;
+    
+            requestAnimationFrame(loop);
         }
         requestAnimationFrame(loop);
     }
-
+    
     animateStrokeGooey();
 
     console.log(elts.text1, elts.text2);

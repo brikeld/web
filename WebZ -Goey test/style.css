@@ -141,10 +141,7 @@ body {
     position: relative;
     font-family: 'Anthony', sans-serif;
 }
-.p1_text3_stroke {
-    position: relative;
-    font-family: 'Anthony', sans-serif;
-}
+
 
 .p1_text2 {
     position: relative;
@@ -164,11 +161,7 @@ body {
     position: relative;
     left: 0; /* Align with container */
 }
-.p1_text3_stroke
-{
-    position: relative;
-    left: 0; /* Align with container */
-}
+
 
 .p1_text1 {
     font-size: 20vw;
@@ -243,15 +236,33 @@ body {
     
 }
 
-.p1_text3_stroke {
+#p1_text3_stroke, #p1_text3_stroke_goey {
     font-size: 10vw;
     line-height: 8vw;
     position: absolute;
     top: 2vw;
     left: 2vw;
     color: transparent;
-    -webkit-text-stroke: 1vw rgb(193,145,255);
-    z-index: 0;
+    mix-blend-mode: overlay;
+    z-index: 5;
+    user-select: none;
+    transition: filter 0.5s ease, opacity 0.5s ease;
+    font-family: 'Anthony', sans-serif;
+}
+
+#p1_text3_stroke {
+    -webkit-text-stroke: 1vw rgb(72, 147, 61);
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+}
+
+#p1_text3_stroke_goey {
+    -webkit-text-stroke: 1vw rgb(255, 0, 0);
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+    filter: url(#gooey);
 }
 
 /* Page1 Section2 Additional Design */
