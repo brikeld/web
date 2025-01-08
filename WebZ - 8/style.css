@@ -967,7 +967,7 @@ body {
     height: 100vh;
     width: 100%; /* Changed from 100vw */
     display: block; /* Change from flex to block */
-    position: relative;
+    position: relative; /* Ensure relative positioning for absolute children */
     padding: 2vw; /* Add some padding */
     overflow: hidden; /* Contains the scrolling content */
 }
@@ -983,7 +983,7 @@ body {
     overflow-y: auto; /* Enable vertical scrolling */
     -ms-overflow-style: none; /* Hide scrollbar for IE/Edge */
     scrollbar-width: none; /* Hide scrollbar for Firefox */
-    position: relative;
+    position: relative; /* Ensure relative positioning */
     z-index: 1; /* Below overlay */
     max-width: 100vw;
     overflow-x: hidden;
@@ -1080,6 +1080,40 @@ body {
     top: 200vh;
     left: 50vw;
     transform: translate(-50%, -50%);
+}
+
+/* Adjust ASCII Art positioning using relative units */
+.ascii-art {
+    position: absolute;
+    top: 10%; /* Use percentage for vertical positioning */
+    left: 10%; /* Use percentage for horizontal positioning */
+    transform: translate(-50%, -50%); /* Center the ASCII art */
+    /* Adjust size responsively */
+    width: 20vw;
+    height: auto;
+}
+
+/* Media Queries for smaller screens */
+@media screen and (max-width: 1200px) {
+    .ascii-art {
+        top: 15%;
+        left: 15%;
+        width: 25vw;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .ascii-art {
+        top: 20%;
+        left: 20%;
+        width: 30vw;
+    }
+}
+
+/* Ensure translations use relative units */
+.ascii-art-translate {
+    transform: translate(-50%, -50%) /* Existing transformations */
+               translate(5%, 5%); /* Adjust translations with percentages */
 }
 
 /* ----------------------------------------------------------- */
