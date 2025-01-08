@@ -64,6 +64,7 @@ body {
     overflow-x: hidden;
     scroll-behavior: smooth;
     background: #fff;
+    overflow: hidden; /* Disable vertical scrolling on body */
 }
 
 /* ----------------------------------------------------------- */
@@ -84,7 +85,12 @@ body {
 }
 
 .page1_section1 {
-    background-color: rgb(250,161,42);
+    background: linear-gradient(
+        to bottom,
+        rgb(250,161,42) 0%,
+        rgb(250,161,42) 80%,
+        rgb(142,145,22) 100%
+    );
     min-height: 150vh; /* Reduced from 200vh */
     width: 100%;
     padding: 2vw;
@@ -93,10 +99,20 @@ body {
 
 .page1_section2 {
     background-color: rgb(142,145,22); /* Green color for second section */
-    min-height: 150vh;
+    min-height: 250vh;
     width: 100%;
     padding: 2vw;
     position: relative;
+}
+
+.page1_section2::after {
+    content: "";
+    position: absolute;
+    top: 150vh;
+    left: 0;
+    right: 0;
+    height: 100vh;
+    background: linear-gradient(to bottom, rgba(142,145,22, 0) 0%, #fff 100%);
 }
 
  .p1_text-container {
@@ -476,9 +492,10 @@ body {
 
 /* Page 2 Title Elements - Keep these similar to page 4 */
 #p2_title, #p2_subtitle, #p2_subtitle2 {
+    font-family: 'HALTimezoneTest';
+    src: url('./fonts/HALTimezoneTest-MonoRegular.otf') format('opentype');
     position: absolute; /* Change from fixed to absolute */
     left: 4vw;
-    font-family: 'HALTimezoneTest';
     font-size: 1vw;
     width: 90%;
     z-index: 2; /* Ensure they stay above scrolling content */
@@ -540,6 +557,7 @@ body {
     .p2_text-container {
         width: 95%;
         height: 90vh;
+        overflow: hidden;
     }
     
     #p2_text2, #p2_text3 {
@@ -551,6 +569,7 @@ body {
 @media screen and (min-width: 2000px) {
     .p2_text-container {
         max-width: 1800px;
+        overflow: hidden;
     }
     
     #p2_text2, #p2_text3 {
@@ -630,11 +649,11 @@ body {
 /* ----------------------------------------------------------- */
 #page3 {
     background-color: #e1e4c8;
-    height: 300vh;
+    height: 300vh; /* Set height to 300vh */
     width: 100%;
     position: relative;
     padding: 2vw;
-    overflow-y: visible; /* Change from auto to visible */
+    overflow: visible; /* Disable internal scrolling */
     -ms-overflow-style: none; /* Hide scrollbar IE/Edge */
     scrollbar-width: none; /* Hide scrollbar Firefox */
 }
@@ -1053,7 +1072,15 @@ body {
     border-radius: 4px;
 }
 
-
+/* Add EXIT text styling */
+#exit-text {
+    font-family: 'HALTimezoneTest', sans-serif;
+    font-size: 45em;
+    position: absolute;
+    top: 200vh;
+    left: 50vw;
+    transform: translate(-50%, -50%);
+}
 
 /* ----------------------------------------------------------- */
 /* ------------------------ Tableau 5 ------------------------ */
