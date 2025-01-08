@@ -76,7 +76,7 @@ body {
 /* ---------------------------------------------- */
 
 #page1 {
-    min-height: 300vh; /* Reduced from 400vh */
+    min-height: 500vh; /* Reduced from 400vh */
     width: 100%;
     position: relative;
     z-index: 5;
@@ -115,18 +115,19 @@ body {
     background: linear-gradient(to bottom, rgba(142,145,22, 0) 0%, #fff 100%);
 }
 
- .p1_text-container {
+.p1_text-container {
     margin-top: 21vw; /* Reduce top margin */
     margin-left: 1vw;
     position: relative;
     width: 100%;
-    min-height: 150vh; /* Reduced from 200vh to match parent */
+    min-height: auto; /* Allow content to determine height */
     height: auto; /* Allow container to grow with content */
     padding-bottom: 30vh; /* Reduced from 50vh */
     padding-top: 0; /* Remove top padding */
     max-width: 100vw;
-    overflow-x: hidden;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
     box-sizing: border-box;
+    overflow-y: hidden; /* Disable internal scrolling */
 }
 
 .p1_mainTitle {
@@ -1077,9 +1078,10 @@ body {
     font-family: 'HALTimezoneTest', sans-serif;
     font-size: 15em;
     position: absolute;
-    top: 200vh;
+    top: 250vh;
     left: 54vw;
     transform: translate(-50%, -50%);
+    z-index: 10;
 }
 
 /* Adjust ASCII Art positioning using relative units */
