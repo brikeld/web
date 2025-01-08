@@ -1075,10 +1075,10 @@ body {
 /* Add EXIT text styling */
 #exit-text {
     font-family: 'HALTimezoneTest', sans-serif;
-    font-size: 45em;
+    font-size: 15em;
     position: absolute;
     top: 200vh;
-    left: 50vw;
+    left: 54vw;
     transform: translate(-50%, -50%);
 }
 
