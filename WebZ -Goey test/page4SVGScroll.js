@@ -35,14 +35,14 @@ function initPage4SVGScroll() {
         
         asciiDiv.textContent = ascii;
         asciiDiv.style.position = 'absolute';
-        asciiDiv.style.left = `${Math.random() * 90}%`;
+        asciiDiv.style.left = `${Math.random() * 100}%`;
         asciiDiv.style.top = `${Math.random() * 90}%`;
         asciiDiv.style.transform = `rotate(${Math.random() * 360}deg)`;
-        asciiDiv.style.fontSize = '12px'; // Increased from 4px
-        asciiDiv.style.lineHeight = '12px'; // Increased from 4px
+        asciiDiv.style.fontSize = '50px';
+        asciiDiv.style.lineHeight = '12px'; 
         asciiDiv.style.color = '#000';
         asciiDiv.style.whiteSpace = 'pre';
-        asciiDiv.style.fontFamily = 'HALTimezoneTest, monospace'; // Set the desired font
+        asciiDiv.style.fontFamily = 'HALTimezoneTest, monospace'; 
         asciiDiv.style.transition = 'all 0.3s ease';
         
         return asciiDiv;
@@ -52,7 +52,7 @@ function initPage4SVGScroll() {
         const img = new Image();
         img.onload = () => {
             const asciiArt = convertToAscii(img);
-            asciiArt.style.transform = `scale(3) rotate(${Math.random() * 360}deg)`; // Added scale(3)
+            asciiArt.style.transform = `scale(.5) rotate(${Math.random() * 360}deg)`;
             asciiArt.style.transformOrigin = 'center center';
             page4.appendChild(asciiArt);
         };

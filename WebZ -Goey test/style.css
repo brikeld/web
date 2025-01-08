@@ -567,7 +567,7 @@ body {
     width: 100%;
     top: 2vw;
     left: 3vw; 
-    font-family: 'AquilineTwo', 'HALTimezone', monospace !important; /* Use custom font */
+    font-family:'HALTimezone', monospace !important;
 }
 
 #p2_subtitle {
@@ -577,9 +577,9 @@ body {
     border-bottom: 1px solid black;
     padding-bottom: 3px;
     width: 90%;
-    top: 2.5vw;
+    top: 3.2vw;
     left: 3vw; 
-    font-family: 'AquilineTwo', 'HALTimezone', monospace !important; /* Use custom font */
+    font-family:'HALTimezone', monospace !important; 
 }
 
 #p2_mainTitle {
@@ -587,13 +587,12 @@ body {
     top: -7.5vw;
     left: 50%;
     transform: translateX(-50%);
-    font-family: 'AquilineTwo', 'HALTimezone', monospace;
     font-size: 7.5vw;
     width: 100%;
     text-align: center;
     color: rgb(0, 0, 0);
     z-index: 2;
-    font-family: 'AquilineTwo', 'HALTimezone', monospace !important; /* Use custom font */
+    font-family: 'AquilineTwo', 'HALTimezone', monospace !important;
 }
 
 #p2_subtitle2 {
@@ -604,7 +603,7 @@ body {
     width: 90%;
     top: 20vw; 
     left: 3vw; 
-    font-family: 'AquilineTwo', 'HALTimezone', monospace !important; /* Use custom font */
+    font-family:'HALTimezone', monospace !important; 
 }
 
 
@@ -730,7 +729,7 @@ body {
 }
 
 #p3_text2 {
-    font-size:20rem !important; /* Keep this */
+    font-size:4rem !important; /* Keep this */
     top: 48vh!important; /* Adjust this to match the working version */
     left: 30vw!important; /* Adjust this to match the working version */
     width: 100%!important;
@@ -846,7 +845,7 @@ body {
 }
 
 #p3_text7 {
-    font-size: calc(5vw + 30rem);
+    font-size: 9rem;
     position: absolute;
     left: 65vw;
     top: 110vh;
@@ -854,10 +853,10 @@ body {
 }
 
 #p3_text8 {
-    font-size: calc(3vw + 1rem) !important;
+    font-size: 4.2rem !important;
     position: absolute;
     top: 191vh;
-    left: 68vw;
+    left: 61vw;
     text-align: left;
     line-height: 1.2;
     z-index: 4;
@@ -879,7 +878,7 @@ body {
     }
 
     #p3_text9 {
-        font-size: calc(2.5vw + 5.6rem);
+        font-size: 3rem;
         position: absolute;
         top: 220vh;
         left: 10vw;
@@ -891,7 +890,7 @@ body {
     }
 
     #p3_text10 {
-        font-size: calc(2.5vw + 15.6rem);
+        font-size: 4.2rem;
         position: absolute;
         top: 170vh;
         left: 49vw;

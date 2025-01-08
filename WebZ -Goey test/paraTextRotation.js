@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (char.hasAttribute('data-rotation')) {
                 const baseRotation = parseFloat(char.getAttribute('data-rotation'));
                 // Apply rotation based on scroll progress
-                char.style.transform = `rotate(${baseRotation * progress}deg)`;
+                char.style.transform = `rotateX(${baseRotation * progress}deg)`;
             }
         });
     }

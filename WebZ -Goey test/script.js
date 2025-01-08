@@ -22,10 +22,9 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         if (elts.text1 && elts.text2 && elts.text3 && elts.text4) {
-            // Elements found, stop observing and start the animation
             observer.disconnect();
             startAnimation(elts);
-            console.log('Animation started with:', elts.text1, elts.text2); // Move console.log inside
+            console.log('Animation started with:', elts.text1, elts.text2); 
         }
     });
 
@@ -228,7 +227,7 @@ document.addEventListener('DOMContentLoaded', () => {
             },
             {
                 id: 'p3_text9',
-                start: "top 35%",
+                start: "top 80%",
                 config: {
                     duration: 3.5,
                     delay: 0.6,
