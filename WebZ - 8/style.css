@@ -38,7 +38,7 @@ html, body {
 }
 
 .snap-container {
-    scroll-snap-type: y mandatory; /* Change to mandatory for stricter snapping */
+    scroll-snap-type: y mandatory; /* Ensure snap scrolling */
     height: 100vh;
     overflow-y: scroll;
     max-width: 100vw;
@@ -48,10 +48,10 @@ html, body {
 
 .page {
     scroll-snap-align: start;
-    min-height: 100vh; /* Changed from height to min-height */
-    width: 100%; /* Changed from 100vw */
+    min-height: 100vh; /* Ensure each page takes up the full viewport height */
+    width: 100%;
     position: relative;
-    overflow: hidden;
+    overflow: hidden; /* Prevent internal scrolling */
     will-change: transform; /* Optimize animations */
     box-sizing: border-box; /* Include padding in width calculation */
     contain: layout size;
@@ -482,12 +482,12 @@ body {
 #page2 {
     font-family: 'HALTimezoneTest';
     background-color: rgb(226, 227, 181);
-    height: 100vh;
+    height: 275vh; /* Ensure the page takes up the full viewport height */
     width: 100%;
     display: block;
     position: relative;
     padding: 2vw;
-    overflow: hidden;
+    overflow: hidden; /* Prevent internal scrolling */
 }
 
 /* Page 2 Title Elements - Keep these similar to page 4 */
@@ -629,19 +629,19 @@ body {
 
 .p2_text-container {
     font-family: 'HALTimezoneTest';
-    height: 100vh;
-    max-height: 100vh;
+    height: auto; /* Change from fixed height to auto */
     width: 90%;
     margin: 0 auto;
     padding: 22vw;
-    overflow-y: auto;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
+    overflow-y: visible; /* Change from auto to visible */
+    -ms-overflow-style: none; /* Hide scrollbar for IE/Edge */
+    scrollbar-width: none; /* Hide scrollbar for Firefox */
     position: relative;
     z-index: 1;
     max-width: 100vw;
     overflow-x: hidden;
     box-sizing: border-box;
+    contain: content; /* Improve rendering performance */
 }
 
 /* ----------------------------------------------------------- */
