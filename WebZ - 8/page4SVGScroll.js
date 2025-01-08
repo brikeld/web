@@ -35,8 +35,8 @@ function initPage4SVGScroll() {
         
         asciiDiv.textContent = ascii;
         asciiDiv.style.position = 'absolute';
-        asciiDiv.style.left = `${Math.random() * 100}%`;
-        asciiDiv.style.top = `${Math.random() * 90}%`;
+        asciiDiv.style.left = `${Math.random() * -50}%`;
+        asciiDiv.style.top = `${Math.random() * 100}%`;
         asciiDiv.style.transform = `rotate(${Math.random() * 360}deg)`;
         asciiDiv.style.fontSize = '50px';
         asciiDiv.style.lineHeight = '12px'; 
