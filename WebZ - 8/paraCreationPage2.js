@@ -44,7 +44,7 @@ function startParaCreationPage2(elementId, config = {}) {
             if (char === ' ') charSpan.style.width = '0.5em';
             const { x, y } = getRandomStartPosition(options.distance);
             charSpan.style.transform = `translate(${x}px, ${y}px) scale(${options.minScale})`;
-            charSpan.style.opacity = '0'; // Start with opacity 0
+            charSpan.style.opacity = '0';
             charSpan.textContent = char;
             lineContainer.appendChild(charSpan);
         });
@@ -74,48 +74,28 @@ function initScrollSyncPage2() {
                     scale: 1,
                     ease: "power2.out"
                 });
-            } else {
-                // Ensure characters beyond the current progress remain hidden
-                gsap.set(char, {
-                    opacity: 0,
-                    x: char._gsap.x || 0, // Preserve the initial random position
-                    y: char._gsap.y || 0,
-                    scale: char._gsap.scale || 1
-                });
             }
         });
     }
 
-    // Get the scroll container for #page2
-    const page2 = document.getElementById('page2');
-    if (!page2) return;
-
-    // Create a ScrollTrigger for #page2's scroll container
-    ScrollTrigger.create({
-        trigger: page2,
-        start: "top top", // Start when the top of #page2 reaches the top of the viewport
-        end: "bottom bottom", // End when the bottom of #page2 reaches the bottom of the viewport
-        scroller: ".snap-container", // Use the snap container as the scroller
-        onUpdate: (self) => {
-            const scrollProgress = self.progress; // Get scroll progress (0 to 1)
-
-            // Animate both text elements based on scroll progress
-            ["p2_text2", "p2_text3"].forEach(id => {
-                const element = document.getElementById(id);
-                if (element) {
+    // Create ScrollTrigger for each text element
+    ["p2_text2", "p2_text3"].forEach(id => {
+        const element = document.getElementById(id);
+        if (element) {
+            ScrollTrigger.create({
+                trigger: element,
+                start: "top 80%", // Adjust this value to control when the animation starts
+                end: "bottom 20%", // Adjust this value to control when the animation ends
+                onUpdate: (self) => {
+                    const scrollProgress = self.progress; // Get scroll progress (0 to 1)
                     revealLines(element, scrollProgress);
-                }
+                },
+                markers: false // Enable markers for debugging if needed
             });
-        },
-        markers: false // Enable markers for debugging if needed
+        }
     });
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Initialize the text animation for page 2
-    startParaCreationPage2('p2_text2');
-    startParaCreationPage2('p2_text3');
-
-    // Initialize the scroll-triggered animation
     initScrollSyncPage2();
 });
