@@ -5,8 +5,8 @@ function initPage4SVGScroll() {
     let svgFiles = ['I.svg','01_Pink.svg','A.svg','C_Pink.svg','C_Purple.svg','C-2.svg','C.svg','D.svg','E_Pink.svg','E_Purple.svg','E-2.svg','E.svg','F.svg','I_Pink.svg','I_Purple.svg','I.svg'];
     
     let lastScrollPosition = 0;
-    let svgCount = 120;
-    const maxSVGs = 550;
+    let svgCount = 80;
+    const maxSVGs = 120;
 
     function convertToAscii(img) {
         const canvas = document.createElement('canvas');
@@ -20,7 +20,7 @@ function initPage4SVGScroll() {
         const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
         const pixels = imageData.data;
         
-        let ascii = '';
+        let asciiHTML = '';
         const characters = ' .:-=+*#%@';
         
         for(let y = 0; y < canvas.height; y += 2) {
@@ -28,31 +28,52 @@ function initPage4SVGScroll() {
                 const i = (y * canvas.width + x) * 4;
                 const brightness = (pixels[i] + pixels[i+1] + pixels[i+2]) / 3;
                 const character = characters[Math.floor(brightness / 255 * (characters.length - 1))];
-                ascii += character;
+                asciiHTML += `<span class="ascii-char">${character}</span>`;
             }
-            ascii += '\n';
+            asciiHTML += '<br>';
         }
         
-        asciiDiv.textContent = ascii;
+        asciiDiv.innerHTML = asciiHTML;
         asciiDiv.style.position = 'absolute';
         asciiDiv.style.left = `${Math.random() * -50}%`;
         asciiDiv.style.top = `${Math.random() * 100}%`;
         asciiDiv.style.transform = `rotate(${Math.random() * 360}deg)`;
-        asciiDiv.style.fontSize = '50px';
-        asciiDiv.style.lineHeight = '12px'; 
+        asciiDiv.style.fontSize = '100px';
+        asciiDiv.style.lineHeight = '100px'; 
         asciiDiv.style.color = '#000';
         asciiDiv.style.whiteSpace = 'pre';
         asciiDiv.style.fontFamily = 'HALTimezoneTest, monospace'; 
         asciiDiv.style.transition = 'all 0.3s ease';
         
+        animateAscii(asciiDiv); // Add this line to start animation
         return asciiDiv;
+    }
+
+    function animateAscii(asciiDiv) {
+        const characters = '@#%&$*+=-:.';
+        const asciiChars = asciiDiv.querySelectorAll('.ascii-char');
+        
+        setInterval(() => {
+            asciiChars.forEach(charSpan => {
+                charSpan.textContent = characters[Math.floor(Math.random() * characters.length)];
+            });
+        }, 500); 
+        
+        // Add pulsing scale animation
+        gsap.to(asciiDiv, {
+            scale: 1.1,
+            duration: 2,
+            repeat: -1,
+            yoyo: true,
+            ease: "power1.inOut"
+        });
     }
 
     function createRandomSVG() {
         const img = new Image();
         img.onload = () => {
             const asciiArt = convertToAscii(img);
-            asciiArt.style.transform = `scale(.5) rotate(${Math.random() * 360}deg)`;
+            asciiArt.style.transform = `scale(1.5) rotate(${Math.random() * 360}deg)`;
             asciiArt.style.transformOrigin = 'center center';
             page4.appendChild(asciiArt);
         };

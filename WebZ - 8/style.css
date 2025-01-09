@@ -1137,6 +1137,7 @@ body {
     /* Adjust size responsively */
     width: 20vw;
     height: auto;
+    transform-origin: center center;
 }
 
 /* Media Queries for smaller screens */
@@ -1256,6 +1257,14 @@ body {
     -webkit-text-fill-color: transparent;
     mix-blend-mode: screen!important;
     z-index: 5;
+}
+
+.highlight {
+    color: white;
+}
+
+.ascii-char {
+    transition: color 0.3s;
 }
 
 
