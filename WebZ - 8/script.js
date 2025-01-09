@@ -27,8 +27,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 start: "top center",
                 end: "50% center", // Reduce the scroll distance
                 scrub: 0.001, 
-                markers: true, // Enable markers for debugging
                 onUpdate: (self) => {
+                    // Remove or comment out any console logs here if present
                 }
             }
         });
@@ -374,7 +374,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     });
                 }
             },
-            markers: true
+            markers: false
         });
 
         // Update ScrollTrigger defaults to use main container
@@ -446,7 +446,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     });
                 }
             },
-            markers: true // Enable markers for debugging
+            markers: false // Enable markers for debugging
         });
 
         // Handle window resize
