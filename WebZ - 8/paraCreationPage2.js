@@ -74,6 +74,15 @@ function initScrollSyncPage2() {
                     scale: 1,
                     ease: "power2.out"
                 });
+            } else {
+                gsap.to(char, {
+                    duration: 0.5,
+                    opacity: 0,
+                    x: getRandomStartPosition(100).x,
+                    y: getRandomStartPosition(100).y,
+                    scale: 0.8,
+                    ease: "power2.out"
+                });
             }
         });
     }

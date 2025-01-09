@@ -38,7 +38,7 @@ html, body {
 }
 
 .snap-container {
-    scroll-snap-type: y mandatory; /* Ensure snap scrolling */
+    scroll-snap-type: y proximity; /* Change from mandatory to proximity for smoother snapping */
     height: 100vh;
     overflow-y: scroll;
     max-width: 100vw;
@@ -51,7 +51,6 @@ html, body {
     min-height: 100vh; /* Ensure each page takes up the full viewport height */
     width: 100%;
     position: relative;
-    overflow: hidden; /* Prevent internal scrolling */
     will-change: transform; /* Optimize animations */
     box-sizing: border-box; /* Include padding in width calculation */
     contain: layout size;
@@ -76,12 +75,22 @@ body {
 /* ---------------------------------------------- */
 
 #page1 {
-    min-height: 500vh; /* Reduced from 400vh */
+    min-height: 555vh; 
     width: 100%;
     position: relative;
     z-index: 5;
-    overflow-y: auto; /* Enable vertical scrolling */
-    scroll-snap-align: start; /* Ensure proper snapping */
+    overflow: hidden; /* Prevent internal scrolling */
+}
+
+#page1::after {
+    content: "";
+    position: absolute;
+    top: 405vh; /* 250vh + 155vh = 405vh */
+    height: 40vh;
+    width: 100%;
+    background: linear-gradient(to top, white, rgb(142,145,22)),
+                linear-gradient(to bottom, white, rgb(226,227,181));
+    z-index: 4; /* Adjust as needed to place below or above content */
 }
 
 .page1_section1 {
@@ -91,43 +100,37 @@ body {
         rgb(250,161,42) 80%,
         rgb(142,145,22) 100%
     );
-    min-height: 150vh; /* Reduced from 200vh */
+    min-height: 250vh; /* Adjust as needed */
     width: 100%;
     padding: 2vw;
     position: relative;
+    overflow: visible; /* Allow content to expand */
 }
 
 .page1_section2 {
-    background-color: rgb(142,145,22); /* Green color for second section */
-    min-height: 250vh;
+    background-color: rgb(142,145,22);
+    min-height: 155vh;
     width: 100%;
     padding: 2vw;
     position: relative;
+    height: 100vh;
 }
 
-.page1_section2::after {
-    content: "";
-    position: absolute;
-    top: 150vh;
-    left: 0;
-    right: 0;
-    height: 100vh;
-    background: linear-gradient(to bottom, rgba(142,145,22, 0) 0%, #fff 100%);
-}
+
+/* Add gradient transition between page1 and page2 */
+
 
 .p1_text-container {
-    margin-top: 21vw; /* Reduce top margin */
+    margin-top: 21vw;
     margin-left: 1vw;
     position: relative;
     width: 100%;
-    min-height: auto; /* Allow content to determine height */
-    height: auto; /* Allow container to grow with content */
-    padding-bottom: 30vh; /* Reduced from 50vh */
-    padding-top: 0; /* Remove top padding */
+    height: auto; /* Allow content to determine height */
+    padding-bottom: 30vh;
+    padding-top: 0;
     max-width: 100vw;
-    overflow-x: hidden; /* Prevent horizontal scrolling */
+    overflow: visible; /* Allow content to expand */
     box-sizing: border-box;
-    overflow-y: hidden; /* Disable internal scrolling */
 }
 
 .p1_mainTitle {
@@ -148,6 +151,7 @@ body {
 #page1 {
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
+    overflow: none!important; /* Disable internal scrolling */
 }
 
 /* Adjust positioning for page1 elements to work with scroll */
@@ -157,26 +161,32 @@ body {
 #p1_text3{
     position: relative;
     font-family: 'Anthony', sans-serif;
+    overflow: none;
+    overflow: none!important; /* Disable internal scrolling */
 }
 
 
 .p1_text2 {
     position: relative;
+    overflow: none!important; /* Disable internal scrolling */
 }
 
 .p1_text2_stroke {
     position: relative;
     left: 0; /* Align with main text */
+    overflow: none!important; /* Disable internal scrolling */
 }
 
 .p1_numbers {
     position: absolute;
     top: 30vh; /* Move up slightly */
+    overflow: none!important; /* Disable internal scrolling */
 }
 
 #p1_text3  {
     position: relative;
     left: 0; /* Align with container */
+    overflow: none!important; /* Disable internal scrolling */
 }
 
 
@@ -186,6 +196,7 @@ body {
     position: relative;
     color: rgb(248,37,255);
     z-index: 10;
+    overflow: none!important; /* Disable internal scrolling */
 }
 
 .p1_text1_stroke {
@@ -197,6 +208,7 @@ body {
     mix-blend-mode: overlay;
     top: 0vh; 
     z-index: 5;
+    overflow: none!important; /* Disable internal scrolling */
 }
 
 .p1_text2 {  
@@ -206,6 +218,7 @@ body {
     top: 8vw;
     color: rgb(185, 0, 192);
     z-index: 10;
+    overflow: none!important; /* Disable internal scrolling */
 }
 
 .p1_text2_stroke {
@@ -216,6 +229,7 @@ body {
     -webkit-text-stroke: 2vw rgb(254, 255, 42);
     mix-blend-mode: overlay;
     z-index: 5;
+    overflow: none!important; /* Disable internal scrolling */
 }
 
 .p1_numbers {
@@ -227,6 +241,7 @@ body {
     -webkit-text-stroke: 2vw rgb(254, 255, 42);
     mix-blend-mode: multiply;
     z-index: 2;
+    overflow: none!important; /* Disable internal scrolling */
 }
 
 #p1_text3, #p1_text3_goey {
@@ -244,12 +259,14 @@ body {
     -webkit-background-clip: text!important;
     -webkit-text-fill-color: transparent!important;
     background-clip: text!important; /* Add standard property for better browser support */
+    overflow: none!important; /* Disable internal scrolling */
 }
 
 #p1_text3_goey {
     background: linear-gradient(to right, #80ff00, #0004ff)!important;
     -webkit-background-clip: text!important;
     -webkit-text-fill-color: transparent!important;
+    overflow: none!important; /* Disable internal scrolling */
     
 }
 
@@ -265,6 +282,7 @@ body {
     user-select: none;
     transition: filter 0.5s ease, opacity 0.5s ease;
     font-family: 'Anthony', sans-serif;
+    overflow: none!important; /* Disable internal scrolling */
 }
 
 #p1_text3_stroke {
@@ -272,6 +290,7 @@ body {
     -webkit-background-clip: text !important;
     -webkit-text-fill-color: transparent !important;
     background-clip: text !important;
+    overflow: none!important; /* Disable internal scrolling */
 }
 
 #p1_text3_stroke_goey {
@@ -280,6 +299,7 @@ body {
     -webkit-text-fill-color: transparent !important;
     background-clip: text !important;
     filter: url(#gooey);
+    overflow: none!important; /* Disable internal scrolling */
 }
 
 /* Page1 Section2 Additional Design */
@@ -483,17 +503,46 @@ body {
 #page2 {
     font-family: 'HALTimezoneTest';
     background-color: rgb(226, 227, 181);
-    height: 275vh; /* Ensure the page takes up the full viewport height */
+    height: 275vh;
     width: 100%;
     display: block;
     position: relative;
     padding: 2vw;
-    overflow: hidden; /* Prevent internal scrolling */
+    overflow: visible; /* Change from hidden to visible */
+    margin-top: 40vh; /* Add margin to create space for the gradient */
+}
+
+#page2::before {
+    content: "";
+    position: absolute;
+    top: -40vh; /* Adjust this to match the height of the gap */
+    left: 0;
+    right: 0;
+    height: 40vh; /* Same height as the gap */
+    background: linear-gradient(
+        to bottom,
+        rgb(255, 255, 255), /* Color from the end of page1_section2 */
+        rgb(226, 227, 181) /* Color from the start of page2 */
+    );
+    z-index: 2; /* Increase z-index to ensure visibility */
+    pointer-events: none; /* Allow interactions with elements below */
+}
+
+#page2::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100vh;
+    background: linear-gradient(to bottom, rgb(226, 227, 181), #e1e4c8);
+    z-index: 1; /* Ensure it's below the ::before pseudo-element */
 }
 
 /* Page 2 Title Elements - Keep these similar to page 4 */
 #p2_title, #p2_subtitle, #p2_subtitle2 {
-    font-family: 'HALTimezoneTest';
+    
+    font-family:'HALTimezone', monospace !important;
     src: url('./fonts/HALTimezoneTest-MonoRegular.otf') format('opentype');
     position: absolute; /* Change from fixed to absolute */
     left: 4vw;
@@ -511,7 +560,6 @@ body {
     line-height: 1.5 !important;
     text-align: center !important;
     width: 80% !important; /* Slightly narrower than container */
-    margin: 0vw auto 0 auto !important; /* Center horizontally and add top margin */
     position: relative !important;
     z-index: 3;
 }
@@ -559,6 +607,7 @@ body {
         width: 95%;
         height: 90vh;
         overflow: hidden;
+
     }
     
     #p2_text2, #p2_text3 {
@@ -580,6 +629,7 @@ body {
 
 /* Update page 2 title elements to match page 4 exactly */
 #p2_title {
+    font-family: 'HALTimezone', monospace !important;
     position: absolute;
     font-size: 1vw;
     margin: 0;
@@ -587,7 +637,7 @@ body {
     width: 100%;
     top: 2vw;
     left: 3vw; 
-    font-family:'HALTimezone', monospace !important;
+
 }
 
 #p2_subtitle {
@@ -638,12 +688,18 @@ body {
     -ms-overflow-style: none; /* Hide scrollbar for IE/Edge */
     scrollbar-width: none; /* Hide scrollbar for Firefox */
     position: relative;
-    z-index: 1;
+    z-index: 2; /* Ensure text is above the gradient */
     max-width: 100vw;
     overflow-x: hidden;
     box-sizing: border-box;
     contain: content; /* Improve rendering performance */
+    padding-bottom: 20vh; /* Add padding to ensure text is not cut off */
 }
+
+
+
+
+
 
 /* ----------------------------------------------------------- */
 /* ------------------------ Tableau 3 ------------------------ */
@@ -740,7 +796,7 @@ body {
     -webkit-text-stroke: none;
     background: none;
     -webkit-text-fill-color: unset;
-    z-index: 5;
+    z-index: 25;
     transform: none; /* Reset any transforms */
     margin: 0; /* Reset margins */
     padding: 0; /* Reset padding */
@@ -957,6 +1013,18 @@ body {
 #p3_text9 .char { animation-delay: calc(var(--char-index) * 0.05s + 0.8s); }
 #p3_text10 .char { animation-delay: calc(var(--char-index) * 0.05s + 0.9s); }
 
+/* Add gradient transition between page3 and page4 */
+#page3::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 45vh; /* Increase height for a bigger gradient */
+    background: linear-gradient(to bottom, #e1e4c8, #ffffff); /* Gradient from page3 background color to page4 background color */
+    z-index: 10; /* Ensure it is above other content */
+}
+
 /* ----------------------------------------------------------- */
 /* ------------------------ Tableau 4 ------------------------ */
 /* ----------------------------------------------------------- */
@@ -1078,8 +1146,8 @@ body {
     font-family: 'HALTimezoneTest', sans-serif;
     font-size: 15em;
     position: absolute;
-    top: 250vh;
-    left: 54vw;
+    top: 230vh;
+    left: 53vw;
     transform: translate(-50%, -50%);
     z-index: 10;
 }
@@ -1116,30 +1184,6 @@ body {
 .ascii-art-translate {
     transform: translate(-50%, -50%) /* Existing transformations */
                translate(5%, 5%); /* Adjust translations with percentages */
-}
-
-/* ----------------------------------------------------------- */
-/* ------------------------ Tableau 5 ------------------------ */
-/* ----------------------------------------------------------- */
-
-#page5 {
-    height: 100vh;
-    width: 100%;
-    position: relative;
-    background-image: url("../images/page5.png");
-    background-size: cover;
-}
-/* ----------------------------------------------------------- */
-/* ------------------------ Tableau 6 ------------------------ */
-/* ----------------------------------------------------------- */
-
-#page6 {
-    background-color: #ffffff;
-    height: 100vh;
-    width: 100%;
-    position: relative;
-    background-image: url("../images/page6.png");
-    background-size: cover;
 }
 
 @keyframes dissolveAway {
@@ -1203,6 +1247,7 @@ body {
 #p2_text2, #p2_text3 {
     white-space: pre-wrap !important;
     line-height: 1;
+    
 }
 
 [class*='_text'] {

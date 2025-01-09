@@ -24,84 +24,51 @@ document.addEventListener('DOMContentLoaded', () => {
 
     observer.observe(document.body, { childList: true, subtree: true });
 
-    function startAnimation(elts) {
-        const ANIMATION_DURATION = 4000; 
-        let startTime = null;
-        let animationFrame;
-
-        function animate(currentTime) {
-            if (!startTime) startTime = currentTime;
-
-            // Calculate progress (0 to 1)
-            let elapsed = (currentTime - startTime) % ANIMATION_DURATION;
-            let fraction = elapsed / ANIMATION_DURATION;
-
-            // Create smooth transitions with sine function
-            let smoothFraction = (Math.sin(fraction * Math.PI * 2) + 1) / 2;
-
-            // Apply the morphing effect
-            setMorph(smoothFraction);
-
-            // Continue the animation loop
-            animationFrame = requestAnimationFrame(animate);
-        }
-
-        function setMorph(fraction) {
-            // Apply the same effect to #p1_text3 and #p1_text3_goey
-            elts.text2.style.filter = `blur(${Math.min(8 / (fraction + 0.1) - 4, 100)}px) url(#gooey)`;
-            elts.text2.style.opacity = `${Math.pow(fraction, 0.4) * 100}%`;
-
-            elts.text1.style.filter = `blur(${Math.min(8 / ((1 - fraction) + 0.1) - 4, 100)}px) url(#gooey)`;
-            elts.text1.style.opacity = `${Math.pow(1 - fraction, 0.4) * 100}%`;
-        }
-
-        requestAnimationFrame(animate);
-
-        return () => {
-            if (animationFrame) {
-                cancelAnimationFrame(animationFrame);
-            }
-        };
-    }
-
-    function animateStrokeGooey() {
-        const strokeEl = document.getElementById('p1_text6_stroke');
-        const goeyEl = document.getElementById('p1_text6_stroke_goey');
-        const strokeEl2 = document.getElementById('p1_text3_stroke');
-        const goeyEl2 = document.getElementById('p1_text3_stroke_goey');
-        let startTime = null;
-        const duration = 10000;
-    
-        function loop(timestamp) {
-            if (!startTime) startTime = timestamp;
-            let elapsed = (timestamp - startTime) % duration;
-            let fraction = elapsed / duration;
-    
-            // For one element
-            goeyEl.style.filter = `blur(${Math.min(8 / fraction - 8, 100)}px) url(#gooey)`;
-            goeyEl.style.opacity = `${Math.pow(fraction, 0.4) * 100}%`;
-    
-            // For the other, invert fraction
-            fraction = 1 - fraction;
-            strokeEl.style.filter = `blur(${Math.min(8 / fraction - 8, 100)}px) url(#gooey)`;
-            strokeEl.style.opacity = `${Math.pow(fraction, 0.4) * 100}%`;
-    
-            // For the second set of elements
-            goeyEl2.style.filter = `blur(${Math.min(8 / fraction - 8, 100)}px) url(#gooey)`;
-            goeyEl2.style.opacity = `${Math.pow(fraction, 0.4) * 100}%`;
-    
-            fraction = 1 - fraction;
-            strokeEl2.style.filter = `blur(${Math.min(8 / fraction - 8, 100)}px) url(#gooey)`;
-            strokeEl2.style.opacity = `${Math.pow(fraction, 0.4) * 100}%`;
-    
-            requestAnimationFrame(loop);
-        }
-        requestAnimationFrame(loop);
-    }
-    
-    animateStrokeGooey();
-
     console.log(elts.text1, elts.text2);
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Ensure GSAP and ScrollTrigger are loaded
+    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+        gsap.registerPlugin(ScrollTrigger);
+
+        const text1 = document.getElementById("p1_text3");
+        const text2 = document.getElementById("p1_text3_goey");
+        const stroke1 = document.getElementById("p1_text3_stroke");
+        const stroke2 = document.getElementById("p1_text3_stroke_goey");
+
+        const morphTimeline = gsap.timeline({
+            scrollTrigger: {
+                trigger: "#page1",
+                start: "top center",
+                end: "bottom center",
+                scrub: true,
+                markers: false
+            }
+        });
+
+        morphTimeline
+            .to(text1, {
+                opacity: 0,
+                filter: "blur(100px) url(#gooey)",
+                ease: "power1.inOut"
+            })
+            .to(text2, {
+                opacity: 1,
+                filter: "blur(0px) url(#gooey)",
+                ease: "power1.inOut"
+            }, 0)
+            .to(stroke1, {
+                opacity: 0,
+                filter: "blur(100px) url(#gooey)",
+                ease: "power1.inOut"
+            }, 0)
+            .to(stroke2, {
+                opacity: 1,
+                filter: "blur(0px) url(#gooey)",
+                ease: "power1.inOut"
+            }, 0);
+    }
 });
 
 /* ----------------------------------------------------------- */
