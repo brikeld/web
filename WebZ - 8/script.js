@@ -13,21 +13,6 @@ let elts = {}; // Make elts accessible here
 /* ----------------------------------------------------------- */
 
 document.addEventListener('DOMContentLoaded', () => {
-    const observer = new MutationObserver((mutationsList, observer) => {
-        elts = {
-            text1: document.getElementById("p1_text3"),
-            text2: document.getElementById("p1_text3_goey"),
-            text3: document.getElementById("p1_text6_stroke"),
-            text4: document.getElementById("p1_text6_stroke_goey")
-        };
-    });
-
-    observer.observe(document.body, { childList: true, subtree: true });
-
-    console.log(elts.text1, elts.text2);
-});
-
-document.addEventListener('DOMContentLoaded', () => {
     // Ensure GSAP and ScrollTrigger are loaded
     if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
         gsap.registerPlugin(ScrollTrigger);
@@ -37,38 +22,135 @@ document.addEventListener('DOMContentLoaded', () => {
         const stroke1 = document.getElementById("p1_text3_stroke");
         const stroke2 = document.getElementById("p1_text3_stroke_goey");
 
+        console.log('Morphing elements:', { text1, text2, stroke1, stroke2 });
+
         const morphTimeline = gsap.timeline({
             scrollTrigger: {
                 trigger: "#page1",
                 start: "top center",
-                end: "bottom center",
-                scrub: true,
-                markers: false
+                end: "50% center", // Reduce the scroll distance
+                scrub: 0.001, 
+                markers: true, // Enable markers for debugging
+                onUpdate: (self) => {
+                    console.log('Scroll progress:', self.progress.toFixed(3));
+                }
             }
         });
+
+  
 
         morphTimeline
             .to(text1, {
                 opacity: 0,
-                filter: "blur(100px) url(#gooey)",
-                ease: "power1.inOut"
+                filter: "blur(10px) url(#gooey)", // Reduced blur for faster effect
+                ease: "power2.inOut",
+                duration: 0.1,
+                onStart: () => console.log('Starting text1 animation'),
+                onComplete: () => console.log('Completed text1 animation')
             })
             .to(text2, {
                 opacity: 1,
                 filter: "blur(0px) url(#gooey)",
-                ease: "power1.inOut"
+                ease: "power2.inOut",
+                duration: 0.1
             }, 0)
             .to(stroke1, {
                 opacity: 0,
-                filter: "blur(100px) url(#gooey)",
-                ease: "power1.inOut"
+                filter: "blur(50px) url(#gooey)",
+                ease: "power2.inOut",
+                duration: 0.1
             }, 0)
             .to(stroke2, {
                 opacity: 1,
                 filter: "blur(0px) url(#gooey)",
-                ease: "power1.inOut"
+                ease: "power2.inOut",
+                duration: 0.1
             }, 0);
+
+        console.log('Morph timeline created');
     }
+
+    // Initialize morph animation without GSAP
+    const morphElements = {
+        text1: document.getElementById("p1_text3"),
+        text2: document.getElementById("p1_text3_goey"),
+        stroke1: document.getElementById("p1_text3_stroke"),
+        stroke2: document.getElementById("p1_text3_stroke_goey")
+    };
+
+    console.log('Morphing elements:', morphElements);
+
+    const scrollContainer = document.querySelector('.snap-container'); // Add this line
+
+    function calculateScrollFraction() {
+        const scrollHeight = scrollContainer.scrollHeight - scrollContainer.clientHeight;
+        const scrollTop = scrollContainer.scrollTop;
+        let scrollFraction = scrollTop / scrollHeight;
+        return Math.pow(scrollFraction, 0.5); // Add easing
+    }
+
+    function doMorph(scrollFraction) {
+        let fraction = Math.min(scrollFraction * 2.2, 1); // Multiply by 3 to make the effect happen sooner
+        setMorph(fraction);
+        console.log('Scroll fraction:', fraction); // Debug log
+    }
+
+    function setMorph(fraction) {
+        // Morph first text pair
+        morphElements.text2.style.filter = `blur(${Math.min(8 / fraction - 8, 100)}px) url(#gooey)`;
+        morphElements.text2.style.opacity = `${Math.pow(fraction, 0.4) * 100}%`;
+
+        fraction = 1 - fraction;
+        morphElements.text1.style.filter = `blur(${Math.min(8 / fraction - 8, 100)}px)`;
+        morphElements.text1.style.opacity = `${Math.pow(fraction, 0.4) * 100}%`;
+
+        // Morph stroke pair
+        morphElements.stroke2.style.filter = `blur(${Math.min(8 / (1 - fraction) - 8, 100)}px) url(#gooey)`;
+        morphElements.stroke2.style.opacity = `${Math.pow(1 - fraction, 0.4) * 100}%`;
+
+        morphElements.stroke1.style.filter = `blur(${Math.min(8 / fraction - 8, 100)}px)`;
+        morphElements.stroke1.style.opacity = `${Math.pow(fraction, 0.4) * 100}%`;
+    }
+
+    // Throttle scroll event for better performance
+    let ticking = false;
+    function onScroll() {
+        if (!ticking) {
+            requestAnimationFrame(() => {
+                const scrollFraction = calculateScrollFraction();
+                doMorph(scrollFraction);
+                ticking = false;
+            });
+            ticking = true;
+        }
+    }
+
+    // IntersectionObserver to trigger morph when page1 is in view
+    const morphObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                scrollContainer.addEventListener('scroll', onScroll); // Change from window to scrollContainer
+                // Initial morph based on current scroll
+                const initialScrollFraction = calculateScrollFraction();
+                doMorph(initialScrollFraction);
+            } else {
+                scrollContainer.removeEventListener('scroll', onScroll); // Change from window to scrollContainer
+            }
+        });
+    }, {
+        threshold: 0.1 // Adjust as needed
+    });
+
+    const page1 = document.getElementById('page1');
+    if (page1) {
+        morphObserver.observe(page1);
+    }
+
+    // Handle window resize to ensure morph is updated
+    window.addEventListener('resize', () => {
+        const scrollFraction = calculateScrollFraction();
+        doMorph(scrollFraction);
+    });
 });
 
 /* ----------------------------------------------------------- */
