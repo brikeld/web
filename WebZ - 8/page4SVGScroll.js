@@ -84,4 +84,51 @@ function initPage4SVGScroll() {
 
 document.addEventListener('DOMContentLoaded', () => {
     initPage4SVGScroll();
+
+    const page4 = document.getElementById('page4');
+    const svgElement = page4.querySelector('svg'); // Adjust the selector if necessary
+
+    if (svgElement) {
+        const letters = svgElement.querySelectorAll('.letter'); // Ensure each letter has the class 'letter'
+
+        const shuffleLetters = () => {
+            const letterArray = Array.from(letters);
+            const shuffled = letterArray.sort(() => Math.random() - 0.5);
+            letterArray.forEach((letter, index) => {
+                letter.style.order = shuffled.indexOf(letter);
+            });
+        };
+
+        const resetOrder = () => {
+            letters.forEach((letter, index) => {
+                letter.style.order = index;
+            });
+        };
+
+        // Apply Flexbox to SVG text for ordering
+        const textElement = svgElement.querySelector('text'); // Adjust selector if needed
+        if (textElement) {
+            textElement.style.display = 'flex';
+            textElement.style.flexDirection = 'row';
+        }
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Briefly shuffle letters
+                    shuffleLetters();
+                    setTimeout(() => {
+                        resetOrder();
+                    }, 1000); // Duration of the animation in milliseconds
+
+                    // Optionally, unobserve after animation
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.5 // Adjust as needed
+        });
+
+        observer.observe(page4);
+    }
 });

@@ -13,7 +13,6 @@ let elts = {}; // Make elts accessible here
 /* ----------------------------------------------------------- */
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Ensure GSAP and ScrollTrigger are loaded
     if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
         gsap.registerPlugin(ScrollTrigger);
 
@@ -21,8 +20,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const text2 = document.getElementById("p1_text3_goey");
         const stroke1 = document.getElementById("p1_text3_stroke");
         const stroke2 = document.getElementById("p1_text3_stroke_goey");
-
-        console.log('Morphing elements:', { text1, text2, stroke1, stroke2 });
 
         const morphTimeline = gsap.timeline({
             scrollTrigger: {
@@ -32,7 +29,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 scrub: 0.001, 
                 markers: true, // Enable markers for debugging
                 onUpdate: (self) => {
-                    console.log('Scroll progress:', self.progress.toFixed(3));
                 }
             }
         });
@@ -45,8 +41,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 filter: "blur(10px) url(#gooey)", // Reduced blur for faster effect
                 ease: "power2.inOut",
                 duration: 0.1,
-                onStart: () => console.log('Starting text1 animation'),
-                onComplete: () => console.log('Completed text1 animation')
             })
             .to(text2, {
                 opacity: 1,
@@ -67,18 +61,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 duration: 0.1
             }, 0);
 
-        console.log('Morph timeline created');
     }
 
-    // Initialize morph animation without GSAP
     const morphElements = {
         text1: document.getElementById("p1_text3"),
         text2: document.getElementById("p1_text3_goey"),
         stroke1: document.getElementById("p1_text3_stroke"),
         stroke2: document.getElementById("p1_text3_stroke_goey")
     };
-
-    console.log('Morphing elements:', morphElements);
 
     const scrollContainer = document.querySelector('.snap-container'); // Add this line
 
@@ -92,7 +82,6 @@ document.addEventListener('DOMContentLoaded', () => {
     function doMorph(scrollFraction) {
         let fraction = Math.min(scrollFraction * 2.2, 1); // Multiply by 3 to make the effect happen sooner
         setMorph(fraction);
-        console.log('Scroll fraction:', fraction); // Debug log
     }
 
     function setMorph(fraction) {
