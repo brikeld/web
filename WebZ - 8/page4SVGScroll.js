@@ -110,7 +110,7 @@ function initPage4SVGScroll() {
     ];
     
     let lastScrollPosition = 0;
-    let svgCount = .1;
+    let svgCount = 0.01;
     const maxSVGs = 22;
 
     function createRandomAsciiArt() {

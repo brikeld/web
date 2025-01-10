@@ -219,12 +219,14 @@ body {
     overflow: none!important; /* Disable internal scrolling */
 }
 
+
+
 .p1_text2 {  
     font-size: 2.4vw;
     color: transparent;
     position: relative;
     top: 8vw;
-    color: rgb(185, 0, 192);
+    color: rgb(246, 255, 0); 
     z-index: 10;
     overflow: none!important; /* Disable internal scrolling */
 }
@@ -234,7 +236,7 @@ body {
     position: absolute;
     top: 50vw;
     color: transparent;
-    -webkit-text-stroke: 2vw rgb(254, 255, 42);
+    -webkit-text-stroke: 2vw rgb(251, 0, 255);
     mix-blend-mode: overlay;
     z-index: 5;
     overflow: none!important; /* Disable internal scrolling */
@@ -263,7 +265,7 @@ body {
     z-index: 1;
     font-family: 'Anthony', sans-serif;
     /* Remove the color property from here as it conflicts with gradient */
-    background: linear-gradient(to right, #67dd0d, #ed0505)!important;
+    background: linear-gradient(to right, #ff9500, #ff9500)!important; 
     -webkit-background-clip: text!important;
     -webkit-text-fill-color: transparent!important;
     background-clip: text!important; /* Add standard property for better browser support */
@@ -318,6 +320,9 @@ body {
     color: rgb(114,0,255);
     z-index: 10;
 }
+
+
+
 
 .p1_text4_stroke {
     font-size: 20vw;
@@ -429,7 +434,7 @@ body {
     border-bottom: 1px solid black;
     padding-bottom: 3px;
     width: 90%;
-    top: 2.5vw;
+    top: 2vw;
     left: 3vw;
     z-index: 15;
 }
@@ -547,7 +552,8 @@ body {
 #p2_text1 {
     font-family: 'AquilineTwo', 'HALTimezone', monospace !important;
     font-size: 4vw !important;
-    color: rgb(142,145,22) !important;
+    top: -7vh;
+    color: rgb(0, 0, 0) !important;
     text-transform: uppercase !important;
     letter-spacing: 0.2em !important;
     line-height: 1.5 !important;
@@ -668,7 +674,7 @@ body {
 
 #p2_mainTitle {
     position: absolute;
-    top: -7.5vw;
+    top: -9vw;
     left: 50%;
     transform: translateX(-50%);
     font-size: 7.5vw;
@@ -1051,7 +1057,7 @@ body {
     line-height: 7vw;
     text-transform: uppercase;
     position: absolute; 
-    top: 24.5%;
+    top: 23.4%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 60%;
@@ -1131,8 +1137,8 @@ body {
     font-family: 'HALTimezoneTest', sans-serif;
     font-size: 15em;
     position: absolute;
-    top: 230vh;
-    left: 53vw;
+    top: 250vh;
+    left: 53.5vw;
     transform: translate(-50%, -50%);
     z-index: 10;
 }
