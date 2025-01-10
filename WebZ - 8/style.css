@@ -897,7 +897,7 @@ body {
     font-size: calc(5vw + 2rem);
     position: absolute;
     left: 10vw;
-    top: 150vh;
+    top: 160vh;
     z-index: 4;
 }
 
@@ -949,8 +949,8 @@ body {
     #p3_text10 {
         font-size: 4.2rem;
         position: absolute;
-        top: 170vh;
-        left: 49vw;
+        top: 168.2vh;
+        left: 39vw;
         width: 50%;
         transform-origin: top left;
         text-align: left;
@@ -983,16 +983,16 @@ body {
 }
 
 /* Add specific delays for each text element */
-#p3_text1 .char { animation-delay: calc(var(--char-index) * 0.05s); }
-#p3_text2 .char { animation-delay: calc(var(--char-index) * 0.05s + 0.1s); }
-#p3_text3 .char { animation-delay: calc(var(--char-index) * 0.05s + 0.2s); }
-#p3_text4 .char { animation-delay: calc(var(--char-index) * 0.05s + 0.3s); }
-#p3_text5 .char { animation-delay: calc(var(--char-index) * 0.05s + 0.4s); }
-#p3_text6 .char { animation-delay: calc(var(--char-index) * 0.05s + 0.5s); }
-#p3_text7 .char { animation-delay: calc(var(--char-index) * 0.05s + 0.6s); }
-#p3_text8 .char { animation-delay: calc(var(--char-index) * 0.05s + 0.7s); }
-#p3_text9 .char { animation-delay: calc(var(--char-index) * 0.05s + 0.8s); }
-#p3_text10 .char { animation-delay: calc(var(--char-index) * 0.05s + 0.9s); }
+#p3_text1 .char { animation-delay: calc(var(--char-index) * 2330.05s); }
+#p3_text2 .char { animation-delay: calc(var(--char-index) * 53250.05s + 430.1s); }
+#p3_text3 .char { animation-delay: calc(var(--char-index) * 5550.05s + 43340.2s); }
+#p3_text4 .char { animation-delay: calc(var(--char-index) * 550.05s + 34430.3s); }
+#p3_text5 .char { animation-delay: calc(var(--char-index) * 550.05s + 43430.4s); }
+#p3_text6 .char { animation-delay: calc(var(--char-index) * 5520.05s + 43430.5s); }
+#p3_text7 .char { animation-delay: calc(var(--char-index) * 5310.05s + 430.6s); }
+#p3_text8 .char { animation-delay: calc(var(--char-index) * 5320.05s + 430.7s); }
+#p3_text9 .char { animation-delay: calc(var(--char-index) * 5230.05s + 430.8s); }
+#p3_text10 .char { animation-delay: calc(var(--char-index) * 53250.05s + 430.9s); }
 
 /* Add gradient transition between page3 and page4 */
 #page3::after {
@@ -1001,7 +1001,7 @@ body {
     bottom: 0;
     left: 0;
     right: 0;
-    height: 45vh; /* Increase height for a bigger gradient */
+    height: 35vh; /* Increase height for a bigger gradient */
     background: linear-gradient(to bottom, #e1e4c8, #ffffff); /* Gradient from page3 background color to page4 background color */
     z-index: 10; /* Ensure it is above other content */
 }
@@ -1050,7 +1050,7 @@ body {
     font-size: 9vw;
     line-height: 7vw;
     text-transform: uppercase;
-    position: absolute; /* Change from fixed to absolute */
+    position: absolute; 
     top: 24.5%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -1061,12 +1061,10 @@ body {
     margin: 0;
     background: rgba(255, 255, 255, 0.8);
     text-align: center;
-    z-index: 10;
+    z-index: -5;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: rgb(0, 0, 0);
-    pointer-events: none; /* Makes it non-interactive */
     transition: opacity 0.5s ease;
     opacity: 1;
 }

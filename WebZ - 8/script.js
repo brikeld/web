@@ -220,10 +220,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 id: 'p3_text2',
                 start: "top 70%",
                 config: {
-                    duration: 2,
-                    distance: 400,
+                    duration: 3.35,
+                    delay: 0,
+                    distance: 500,
                     randomizeDistance: false,
-                    animationDuration: 0.15,
+                    animationDuration: 1.35,
                     minScale: 0.8,
                     maxScale: 1.2
                 }
@@ -232,10 +233,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 id: 'p3_text3',
                 start: "top 65%",
                 config: {
-                    duration: 2.5,
-                    delay: 0.3,
+                    duration: 7,
+                    delay: 0.2,
                     distance: 600,
-                    animationDuration: 0.25,
+                    animationDuration: 1.25,
                     rotationRange: 360,
                     minScale: 0.7,
                     maxScale: 1.3
@@ -246,7 +247,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 start: "top 60%",
                 config: {
                     duration: 3,
-                    delay: 0.2,
+                    delay: 0.1,
                     distance: 700,
                     animationDuration: 0.3,
                     randomizeDirections: true,
@@ -270,10 +271,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 id: 'p3_text6',
                 start: "top 50%",
                 config: {
-                    duration: 2,
-                    delay: 0.4,
+                    duration: 1.6,
+                    delay: 0.2,
                     distance: 500,
-                    animationDuration: 0.25,
+                    animationDuration: 0.15,
                     randomizeDirections: true,
                     easing: 'cubic-bezier(0.34, 1.56, 0.64, 1)'
                 }
@@ -283,7 +284,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 start: "top 45%",
                 config: {
                     duration: 2.8,
-                    delay: 0.3,
+                    delay: 0.25,
                     distance: 900,
                     animationDuration: 0.35,
                     rotationRange: 540,
@@ -295,10 +296,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 id: 'p3_text8',
                 start: "top 40%",
                 config: {
-                    duration: 2.2,
-                    delay: 0.2,
+                    duration: 5.2,
+                    delay: 0.1,
                     distance: 450,
-                    animationDuration: 0.28,
+                    animationDuration: 1.28,
                     randomizeDirections: true,
                     easing: 'cubic-bezier(0.4, 0, 0.2, 1)'
                 }
@@ -307,8 +308,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 id: 'p3_text9',
                 start: "top 80%",
                 config: {
-                    duration: 3.5,
-                    delay: 0.6,
+                    duration: 5.5,
+                    delay: 0.2,
                     distance: 1000,
                     animationDuration: 0.4,
                     rotationRange: 900,
@@ -321,7 +322,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 start: "top 30%",
                 config: {
                     duration: 2.5,
-                    delay: 0.4,
+                    delay: 0.1,
                     distance: 600,
                     animationDuration: 0.3,
                     randomizeDirections: true,
@@ -354,28 +355,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         // Update ScrollTrigger to use main container's scroll
-        ScrollTrigger.create({
-            trigger: "#p3_text2",
-            scroller: ".snap-container", // Specify the main scrolling container
-            start: "top 70%",
-            end: "bottom 20%",
-            onEnter: () => {
-                const p3_text2 = document.getElementById('p3_text2');
-                if (p3_text2 && !p3_text2.hasAttribute('data-animated')) {
-                    p3_text2.style.display = 'block';
-                    p3_text2.style.visibility = 'visible';
-                    p3_text2.style.opacity = '1'; // Set opacity to 1 to make it visible without animation
-                    
-                    // Restore animation
-                    void p3_text2.offsetWidth;
-                    requestAnimationFrame(() => {
-                        startParaCreation('p3_text2', 3);
-                        p3_text2.setAttribute('data-animated', 'true');
-                    });
-                }
-            },
-            markers: false
-        });
 
         // Update ScrollTrigger defaults to use main container
         ScrollTrigger.defaults({
@@ -403,73 +382,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
         }, { 
-            threshold: [0, 0.5], // Changed to better detect entry
-            rootMargin: '0px'
+            threshold: [0, 0.5],
+            rootMargin: '10px'
         });
 
         document.querySelectorAll('.page').forEach(page => observer.observe(page));
-
-        // Create observer for debugging p3_text2 position
-        const p3_text2Observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const bounds = entry.target.getBoundingClientRect();
-                }
-            });
-        }, {
-            threshold: [0, 0.25, 0.5, 0.75, 1]
-        });
-
-        const p3_text2 = document.getElementById('p3_text2');
-        if (p3_text2) {
-            p3_text2Observer.observe(p3_text2);
-        }
-
-        // ScrollTrigger for p3_text2
-        ScrollTrigger.create({
-            trigger: "#p3_text2",
-            scroller: ".snap-container", // Specify the main scrolling container
-            start: "top 70%",
-            end: "bottom 20%",
-            onEnter: () => {
-                const p3_text2 = document.getElementById('p3_text2');
-                if (p3_text2 && !p3_text2.hasAttribute('data-animated')) {
-                    p3_text2.style.display = 'block';
-                    p3_text2.style.visibility = 'visible';
-                    p3_text2.style.opacity = '1'; // Set opacity to 1 to make it visible without animation
-                    
-                    // Restore animation
-                    void p3_text2.offsetWidth;
-                    requestAnimationFrame(() => {
-                        startParaCreation('p3_text2', 3);
-                        p3_text2.setAttribute('data-animated', 'true');
-                    });
-                }
-            },
-            markers: false // Enable markers for debugging
-        });
-
-        // Handle window resize
-        let resizeTimeout;
-        window.addEventListener('resize', () => {
-            clearTimeout(resizeTimeout);
-            resizeTimeout = setTimeout(() => {
-                ScrollTrigger.refresh();
-            }, 250);
-        });
-
-        // Initial refresh after everything is loaded
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                ScrollTrigger.refresh();
-            }, 1000);
-        });
-
-        // initPage4SVGScroll(); // Removed or commented out
-    } else {
-        console.error('GSAP or ScrollTrigger not loaded');
     }
 });
+
 
 /* ----------------------------------------------------------- */
 /* ------------------------ Tableau 2 ------------------------ */

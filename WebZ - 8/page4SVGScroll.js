@@ -1,70 +1,158 @@
 let overlayTimeout;
-let reloadTimeout; // Add this line
-let isAtBottom = false; // Track if bottom is reached
-let isBackgroundHidden = false; // Track if background has been hidden permanently
+let reloadTimeout;
+let isAtBottom = false;
+let isBackgroundHidden = false;
 
 function initPage4SVGScroll() {
     const page4 = document.getElementById('page4');
     const container = page4.querySelector('.p4_text-container');
     
-    let svgFiles = ['I.svg','01_Pink.svg','A.svg','C_Pink.svg','C_Purple.svg','C-2.svg','C.svg','D.svg','E_Pink.svg','E_Purple.svg','E-2.svg','E.svg','F.svg','I_Pink.svg','I_Purple.svg','I.svg'];
+    const asciiPatterns = [
+        `
+░░░░░░░░░░░░░░░█████████████████████████
+░░░░░░░░░░░░░░██░█████████░░███░░░░░███░
+░░░░░░░░░░░░░██░████████░░░████░░░████░░
+░░░░░░░░░░░░██████████░░░██████░░████░░░
+░░░░░░░░░░░██████████░░░████░█░░████████
+░░░░░░░░░░█████████░░░██░██░██████░░░░██
+░░░░░░░░░█████████░░░██░█████████░░░██░█
+░░░░░░░░█████████░███░██████████░███████
+░░░░░░░█████████░██░███████████░████████
+░░░░░█████████░░░░███████████████████░░█
+░░░██████████░███████████████████████░░█
+░████░█░██████████████████████████░░█░░█
+██░██░█████░░██░██████████████░██░░█░░░█
+█░██░░████████░██████████████░██░░██░░██
+░██░░████████░██████████████░█░░░░█░███░
+██░░████░██░█████████████████░░░░████░░░
+█░░█████░░████████████░░████░░░░███░░░░░
+███████░░███████████░░░████░░░██░░░░░░░░
+██████████████████░░░░█░█░░█████░░░░░░░░
+███████████░███░░░░░██░█░███░██░░░░░░░░░
+██░███████░███░░░███░████░░░██░░░░░░░░░░
+████████░███░░████░░███░░░░█░░░░░░░░░░░░
+█░░███░███░░░░░░█████░░░░░█░░░░░░░░░░░░░
+███████░░░░░█████░██░░░░██░░░░░░░░░░░░░░
+████████████░░░░░░██████░░░░░░░░░░░░░░░░
+░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+
+        `,
+        `
+░░░░░░░░░░░░░░░█████████████████████████
+░░░░░░░░░░░░░░██░█████████░░███░░░░░███░
+░░░░░░░░░░░░░██░████████░░░████░░░████░░
+░░░░░░░░░░░░██████████░░░██████░░████░░░
+░░░░░░░░░░░██████████░░░████░█░░████████
+░░░░░░░░░░█████████░░░██░██░██████░░░░██
+░░░░░░░░░█████████░░░██░█████████░░░██░█
+░░░░░░░░█████████░███░██████████░███████
+░░░░░░░█████████░██░███████████░████████
+░░░░░█████████░░░░███████████████████░░█
+░░░██████████░███████████████████████░░█
+░████░█░██████████████████████████░░█░░█
+██░██░█████░░██░██████████████░██░░█░░░█
+█░██░░████████░██████████████░██░░██░░██
+░██░░████████░██████████████░█░░░░█░███░
+██░░████░██░█████████████████░░░░████░░░
+█░░█████░░████████████░░████░░░░███░░░░░
+███████░░███████████░░░████░░░██░░░░░░░░
+██████████████████░░░░█░█░░█████░░░░░░░░
+███████████░███░░░░░██░█░███░██░░░░░░░░░
+██░███████░███░░░███░████░░░██░░░░░░░░░░
+████████░███░░████░░███░░░░█░░░░░░░░░░░░
+█░░███░███░░░░░░█████░░░░░█░░░░░░░░░░░░░
+███████░░░░░█████░██░░░░██░░░░░░░░░░░░░░
+████████████░░░░░░██████░░░░░░░░░░░░░░░░
+░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+
+        `,
+        `
+░░░░░░░░░░░░░░░█████████████████████████
+░░░░░░░░░░░░░░██░█████████░░███░░░░░███░
+░░░░░░░░░░░░░██░████████░░░████░░░████░░
+░░░░░░░░░░░░██████████░░░██████░░████░░░
+░░░░░░░░░░░██████████░░░████░█░░████████
+░░░░░░░░░░█████████░░░██░██░██████░░░░██
+░░░░░░░░░█████████░░░██░█████████░░░██░█
+░░░░░░░░█████████░███░██████████░███████
+░░░░░░░█████████░██░███████████░████████
+░░░░░█████████░░░░███████████████████░░█
+░░░██████████░███████████████████████░░█
+░████░█░██████████████████████████░░█░░█
+██░██░█████░░██░██████████████░██░░█░░░█
+█░██░░████████░██████████████░██░░██░░██
+░██░░████████░██████████████░█░░░░█░███░
+██░░████░██░█████████████████░░░░████░░░
+█░░█████░░████████████░░████░░░░███░░░░░
+███████░░███████████░░░████░░░██░░░░░░░░
+██████████████████░░░░█░█░░█████░░░░░░░░
+███████████░███░░░░░██░█░███░██░░░░░░░░░
+██░███████░███░░░███░████░░░██░░░░░░░░░░
+████████░███░░████░░███░░░░█░░░░░░░░░░░░
+█░░███░███░░░░░░█████░░░░░█░░░░░░░░░░░░░
+███████░░░░░█████░██░░░░██░░░░░░░░░░░░░░
+████████████░░░░░░██████░░░░░░░░░░░░░░░░
+░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+
+        `,
+    ];
     
     let lastScrollPosition = 0;
-    let svgCount = 1;
-    const maxSVGs = 1;
+    let svgCount = .1;
+    const maxSVGs = 22;
 
-    function convertToAscii(img) {
-        const canvas = document.createElement('canvas');
-        const ctx = canvas.getContext('2d');
+    function createRandomAsciiArt() {
         const asciiDiv = document.createElement('pre');
+        const randomPattern = asciiPatterns[Math.floor(Math.random() * asciiPatterns.length)];
+        asciiDiv.textContent = randomPattern;
         
-        canvas.width = img.width;
-        canvas.height = img.height;
-        
-        ctx.drawImage(img, 0, 0);
-        const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-        const pixels = imageData.data;
-        
-        let asciiHTML = '';
-        const characters = ' .:-=+*#%@';
-        
-        for(let y = 0; y < canvas.height; y += 2) {
-            for(let x = 0; x < canvas.width; x++) {
-                const i = (y * canvas.width + x) * 4;
-                const brightness = (pixels[i] + pixels[i+1] + pixels[i+2]) / 3;
-                const character = characters[Math.floor(brightness / 255 * (characters.length - 1))];
-                asciiHTML += `<span class="ascii-char">${character}</span>`;
-            }
-            asciiHTML += '<br>';
-        }
-        
-        asciiDiv.innerHTML = asciiHTML;
         asciiDiv.style.position = 'absolute';
-        asciiDiv.style.left = `${Math.random() * -50}%`;
+        asciiDiv.style.left = `${Math.random() * 50}%`;
         asciiDiv.style.top = `${Math.random() * 100}%`;
-        asciiDiv.style.transform = `rotate(${Math.random() * 360}deg)`;
-        asciiDiv.style.fontSize = '100px';
-        asciiDiv.style.lineHeight = '100px'; 
+        asciiDiv.style.fontSize = '23px';
+        asciiDiv.style.lineHeight = '11px';
         asciiDiv.style.color = '#000';
         asciiDiv.style.whiteSpace = 'pre';
-        asciiDiv.style.fontFamily = 'HALTimezoneTest, monospace'; 
+        asciiDiv.style.fontFamily = 'HALTimezoneTest, monospace';
         asciiDiv.style.transition = 'all 0.3s ease';
         
-        animateAscii(asciiDiv); // Add this line to start animation
+        animateAscii(asciiDiv);
         return asciiDiv;
     }
 
     function animateAscii(asciiDiv) {
-        const characters = '@#%&$*+=-:.';
-        const asciiChars = asciiDiv.querySelectorAll('.ascii-char');
+        const characters = 'x#%&$*+=-:.';
+        const asciiText = asciiDiv.textContent;
+        const asciiChars = [];
         
+        // Convert text content into individual character spans
+        asciiDiv.innerHTML = asciiText.split('').map(char => {
+            if (char === '\n') return '<br>';
+            return `<span class="ascii-char">${char}</span>`;
+        }).join('');
+        
+        const charSpans = asciiDiv.querySelectorAll('.ascii-char');
+        
+        // Animate characters
         setInterval(() => {
-            asciiChars.forEach(charSpan => {
-                charSpan.textContent = characters[Math.floor(Math.random() * characters.length)];
+            charSpans.forEach(span => {
+                span.textContent = characters[Math.floor(Math.random() * characters.length)];
             });
-        }, 500); 
+        }, 100);
         
-        // Add pulsing scale animation
+        // GSAP animation for scaling
         gsap.to(asciiDiv, {
             scale: 1.1,
             duration: 2,
@@ -74,47 +162,25 @@ function initPage4SVGScroll() {
         });
     }
 
-    function createRandomSVG() {
-        const img = new Image();
-        img.onload = () => {
-            const asciiArt = convertToAscii(img);
-            asciiArt.style.transform = `scale(1.5) rotate(${Math.random() * 360}deg)`;
-            asciiArt.style.transformOrigin = 'center center';
-            page4.appendChild(asciiArt);
-            
-            // Remove the following line
-            // console.log(`SVG Count: ${svgCount}`);
-        };
-        img.src = `svg/${svgFiles[Math.floor(Math.random() * svgFiles.length)]}`;
-    }
-
-    container.addEventListener('scroll', () => {
+    function handleScroll() {
         const currentScroll = container.scrollTop;
         const maxScroll = container.scrollHeight - container.clientHeight;
         
-        // Check if bottom is reached
-        if (currentScroll >= maxScroll - 10) { // 10px threshold
+        if (currentScroll >= maxScroll - 10) {
             if (!isAtBottom) {
                 isAtBottom = true;
-                
-                // Hide the background of #p4_overlay-text permanently
                 const overlayText = document.getElementById('p4_overlay-text');
                 if (overlayText && !isBackgroundHidden) {
                     overlayText.style.background = 'none';
-                    isBackgroundHidden = true; // Ensure this runs only once
-                    // Remove the following line
-                    // console.log('Background of #p4_overlay-text has been hidden permanently.');
+                    isBackgroundHidden = true;
                 }
-
-                // Start reload timer
                 reloadTimeout = setTimeout(() => {
                     location.reload();
-                }, 3000); // 3 seconds
+                }, 3000);
             }
         } else {
             if (isAtBottom) {
                 isAtBottom = false;
-                // Clear reload timer if user scrolls up before 3 seconds
                 clearTimeout(reloadTimeout);
             }
         }
@@ -123,13 +189,15 @@ function initPage4SVGScroll() {
             const numToAdd = Math.floor(Math.random() * 3) + 1;
             for (let i = 0; i < numToAdd; i++) {
                 if (svgCount < maxSVGs) {
-                    createRandomSVG();
+                    const asciiArt = createRandomAsciiArt();
+                    asciiArt.style.transform = `scale(0.3) rotate(${Math.random() * 360}deg)`;
+                    asciiArt.style.transformOrigin = 'center center';
+                    page4.appendChild(asciiArt);
                     svgCount++;
                 }
             }
         }
 
-        // Background color transition
         const scrollRatio = currentScroll / maxScroll;
         const inverted = 255 - Math.floor(scrollRatio * 255);
         page4.style.backgroundColor = `rgb(${inverted}, ${inverted}, ${inverted})`;
@@ -138,86 +206,51 @@ function initPage4SVGScroll() {
 
         const overlayText = document.getElementById('p4_overlay-text');
         if (overlayText && !isBackgroundHidden) {
-            // Show overlay when scrolling starts
             overlayText.style.display = 'block';
-
-            // Clear any existing timeout
             clearTimeout(overlayTimeout);
-
-            // Set timeout to hide overlay after 2 seconds
             overlayTimeout = setTimeout(() => {
                 overlayText.style.display = 'none';
             }, 2000);
         }
-    });
+    }
 
-    // Add IntersectionObserver for the button
+    container.addEventListener('scroll', throttle(handleScroll, 200));
+
     const page4Button = document.getElementById('page4_button');
     if (page4Button) {
         const buttonObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    // Stop SVG animations
                     activeTimelines.forEach(timeline => timeline.kill());
                 } else {
-                    // Start SVG animations
                     startSquaresAnimation();
                 }
             });
-        }, { threshold: 0.5 }); // Adjust threshold as needed
+        }, { threshold: 0.5 });
 
         buttonObserver.observe(page4Button);
     }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    initPage4SVGScroll();
-
-    const page4 = document.getElementById('page4');
-    const svgElement = page4.querySelector('svg'); // Adjust the selector if necessary
-
-    if (svgElement) {
-        const letters = svgElement.querySelectorAll('.letter'); // Ensure each letter has the class 'letter'
-
-        const shuffleLetters = () => {
-            const letterArray = Array.from(letters);
-            const shuffled = letterArray.sort(() => Math.random() - 0.5);
-            letterArray.forEach((letter, index) => {
-                letter.style.order = shuffled.indexOf(letter);
-            });
-        };
-
-        const resetOrder = () => {
-            letters.forEach((letter, index) => {
-                letter.style.order = index;
-            });
-        };
-
-        // Apply Flexbox to SVG text for ordering
-        const textElement = svgElement.querySelector('text'); // Adjust selector if needed
-        if (textElement) {
-            textElement.style.display = 'flex';
-            textElement.style.flexDirection = 'row';
-        }
-
-        const observer = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    // Briefly shuffle letters
-                    shuffleLetters();
-                    shuffleLetters();
-                    setTimeout(() => {
-                        resetOrder();
-                    }, 1000); // Duration of the animation in milliseconds
-
-                    // Optionally, unobserve after animation
-                    observer.unobserve(entry.target);
+function throttle(func, limit) {
+    let lastFunc;
+    let lastRan;
+    return function() {
+        const context = this;
+        const args = arguments;
+        if (!lastRan) {
+            func.apply(context, args);
+            lastRan = Date.now();
+        } else {
+            clearTimeout(lastFunc);
+            lastFunc = setTimeout(function() {
+                if ((Date.now() - lastRan) >= limit) {
+                    func.apply(context, args);
+                    lastRan = Date.now();
                 }
-            });
-        }, {
-            threshold: 0.5 // Adjust as needed
-        });
+            }, limit - (Date.now() - lastRan));
+        }
+    };
+}
 
-        observer.observe(page4);
-    }
-});
+document.addEventListener('DOMContentLoaded', initPage4SVGScroll);
