@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1538 1350.188">
+    <defs>
+        <style>
+            @font-face {
+                font-family: 'HALTimezone';
+                src: url('../../fonts/HALTimezoneTest-MonoRegular.otf') format('opentype');
+            }
+            .cls-1{fill:none;stroke:transparent;stroke-miterlimit:10;}
+            text {font-size: 3.5em; font-family: 'HALTimezone', monospace;}
+        </style>
+        <path id="text-path-1" d="M74.222,924.778h357.333v356.222H74.222s0,67.778,0-356.222S413.111,219.222,413.111,219.222h844.556"/>
+    </defs>
+    <path class="cls-1" d="M74.222,924.778h357.333v356.222H74.222s0,67.778,0-356.222S413.111,219.222,413.111,219.222h844.556"/>
+    <text>
+        <textPath href="#text-path-1" startOffset="100%" >
+          “Algernon stood at the edge of the world—not a physical edge, of course, but the kind you stumble upon in your mind when all the usual answers no longer satisfy. He had been chasing questions for as long as he could remember, plucking them from the air like drifting seeds, letting them take root in the fertile soil of his thoughts. Yet, despite all his pondering, one question lingered persistently in the back of his mind: What lies beyond the known?
+            It wasn’t just a question of geography or science or even philosophy. No, it was something deeper, more elusive. It was the feeling he got when he stared at the stars on a clear night, that quiet hum of insignificance paired with the intoxicating thrill of possibility. It was the sense that the world—his world—was but a fraction of what could be. And so, as he sat in his usual chair by the flickering light of the fire, he let his mind wander to that familiar place beyond the horizon of certainty.”
+        </textPath>
+    </text>
+</svg>
