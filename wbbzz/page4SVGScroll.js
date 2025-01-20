@@ -176,7 +176,7 @@ function initPage4SVGScroll() {
                 }
                 reloadTimeout = setTimeout(() => {
                     location.reload();
-                }, 3000);
+                }, 5000);
             }
         } else {
             if (isAtBottom) {
