@@ -15,6 +15,7 @@ function initPage4SVGScroll() {
         
         canvas.width = img.width;
         canvas.height = img.height;
+        /////
         
         ctx.drawImage(img, 0, 0);
         const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
